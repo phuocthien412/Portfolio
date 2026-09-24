@@ -1,0 +1,305 @@
+import React, { useState } from "react";
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2, MessageSquare } from "lucide-react";
+import { GithubIcon } from "../ui/Icons";
+import { Badge } from "../ui/Badge";
+import { useT } from "../../stores/usePortfolioStore";
+import { ScrollReveal } from "../ui/ScrollReveal";
+import { useSubmitContact } from "../../hooks/usePortfolioData";
+import type { ContactFormInput } from "../../types";
+
+export const ContactSection: React.FC = () => {
+  const t = useT();
+  const [formData, setFormData] = useState<ContactFormInput>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [statusMessage, setStatusMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  const submitMutation = useSubmitContact();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatusMessage(null);
+
+    if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
+      setStatusMessage({ type: "error", text: t.contact.requiredWarning });
+      return;
+    }
+
+    try {
+      const response = await submitMutation.mutateAsync(formData);
+      setStatusMessage({
+        type: "success",
+        text: response.message || t.contact.successMessage,
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (err: any) {
+      setStatusMessage({
+        type: "error",
+        text: err.message || t.contact.errorMessage,
+      });
+    }
+  };
+
+  return (
+    <section id="contact" className="py-24 relative overflow-hidden">
+      {/* Background Subtle Cyber Glow */}
+      <div className="absolute bottom-0 left-1/3 w-[500px] h-[500px] bg-emerald-500/10 dark:bg-cyan-500/10 rounded-full blur-[160px] pointer-events-none -z-10" />
+
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header */}
+        <ScrollReveal animation="fade-up">
+          <div className="space-y-3 mb-16 text-center max-w-3xl mx-auto">
+            <Badge variant="emerald" className="mx-auto">
+              {t.contact.sectionBadge}
+            </Badge>
+            <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-foreground">
+              {t.contact.title} <span className="gradient-text">{t.contact.highlight}</span>
+            </h2>
+            <p className="text-base text-slate-600 dark:text-muted-foreground leading-relaxed">
+              {t.contact.subtitle}
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          {/* Left Column: Direct Info Cards */}
+          <div className="lg:col-span-5 space-y-6 flex flex-col justify-between">
+            <ScrollReveal animation="fade-right">
+              <div className="space-y-4">
+                <h3 className="font-display font-bold text-2xl text-slate-900 dark:text-foreground">
+                  {t.contact.directTitle}
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-muted-foreground leading-relaxed">
+                  {t.contact.directSubtitle}
+                </p>
+
+                {/* Direct Channels */}
+                <div className="space-y-3 pt-2">
+                  {/* Phone */}
+                  <a
+                    href="tel:0987176434"
+                    className="rounded-2xl border border-slate-200 dark:border-border/80 bg-white dark:bg-card/60 backdrop-blur-md p-4 flex items-center gap-4 hover:border-emerald-500/50 hover:bg-slate-50 dark:hover:bg-card/90 transition-all shadow-sm group"
+                  >
+                    <div className="p-3 rounded-xl bg-emerald-50 text-emerald-600 dark:bg-cyan-500/10 dark:text-cyan-400 group-hover:scale-105 transition-transform">
+                      <Phone className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-mono text-slate-500 dark:text-muted-foreground uppercase">{t.contact.phoneLabel}</span>
+                      <h4 className="font-semibold text-slate-900 dark:text-foreground text-sm sm:text-base group-hover:text-emerald-700 dark:group-hover:text-cyan-400 transition-colors">
+                        0987 176 434
+                      </h4>
+                    </div>
+                  </a>
+
+                  {/* Email */}
+                  <a
+                    href="mailto:minhngothien1@gmail.com"
+                    className="rounded-2xl border border-slate-200 dark:border-border/80 bg-white dark:bg-card/60 backdrop-blur-md p-4 flex items-center gap-4 hover:border-emerald-500/50 hover:bg-slate-50 dark:hover:bg-card/90 transition-all shadow-sm group"
+                  >
+                    <div className="p-3 rounded-xl bg-emerald-50 text-emerald-600 dark:bg-cyan-500/10 dark:text-cyan-400 group-hover:scale-105 transition-transform">
+                      <Mail className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-mono text-slate-500 dark:text-muted-foreground uppercase">{t.contact.emailLabel}</span>
+                      <h4 className="font-semibold text-slate-900 dark:text-foreground text-sm sm:text-base group-hover:text-emerald-700 dark:group-hover:text-cyan-400 transition-colors">
+                        minhngothien1@gmail.com
+                      </h4>
+                    </div>
+                  </a>
+
+                  {/* Location */}
+                  <div className="rounded-2xl border border-slate-200 dark:border-border/80 bg-white dark:bg-card/60 backdrop-blur-md p-4 flex items-center gap-4 shadow-sm">
+                    <div className="p-3 rounded-xl bg-emerald-50 text-emerald-600 dark:bg-cyan-500/10 dark:text-cyan-400">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-mono text-slate-500 dark:text-muted-foreground uppercase">{t.contact.addressLabel}</span>
+                      <h4 className="font-semibold text-slate-900 dark:text-foreground text-sm sm:text-base">
+                        {t.contact.addressValue}
+                      </h4>
+                    </div>
+                  </div>
+
+                  {/* GitHub */}
+                  <a
+                    href="https://github.com/phuocthien412"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-2xl border border-slate-200 dark:border-border/80 bg-white dark:bg-card/60 backdrop-blur-md p-4 flex items-center gap-4 hover:border-emerald-500/50 hover:bg-slate-50 dark:hover:bg-card/90 transition-all shadow-sm group"
+                  >
+                    <div className="p-3 rounded-xl bg-emerald-50 text-emerald-600 dark:bg-cyan-500/10 dark:text-cyan-400 group-hover:scale-110 transition-transform">
+                      <GithubIcon className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-mono text-slate-500 dark:text-muted-foreground uppercase">{t.contact.githubLabel}</span>
+                      <h4 className="font-semibold text-slate-900 dark:text-foreground text-sm sm:text-base group-hover:text-emerald-700 dark:group-hover:text-cyan-400 transition-colors">
+                        github.com/phuocthien412
+                      </h4>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* MongoDB Backend live tag */}
+            <ScrollReveal animation="fade-up" delay={200}>
+              <div className="p-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 flex items-center gap-3 text-xs text-slate-600 dark:text-muted-foreground">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>{t.contact.mongoNote}</span>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Right Column: Working Contact Form */}
+          <div className="lg:col-span-7">
+            <ScrollReveal animation="fade-left">
+              <div className="rounded-3xl border border-slate-200 dark:border-border/80 bg-white dark:bg-card/75 backdrop-blur-xl p-6 sm:p-8 shadow-lg">
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-center gap-2 text-emerald-700 dark:text-cyan-400 font-mono text-xs uppercase font-semibold">
+                    <MessageSquare className="w-4 h-4" />
+                    <span>{t.contact.formOnlineBadge}</span>
+                  </div>
+                  <h3 className="font-display font-bold text-2xl text-slate-900 dark:text-foreground">
+                    {t.contact.formTitle}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-muted-foreground">
+                    {t.contact.formSubtitle}
+                  </p>
+                </div>
+
+                {/* Status Alert */}
+                {statusMessage && (
+                  <div
+                    className={`p-4 rounded-xl text-xs sm:text-sm mb-6 flex items-start gap-2.5 ${
+                      statusMessage.type === "success"
+                        ? "bg-emerald-50 border border-emerald-200 text-emerald-800 dark:bg-emerald-500/10 dark:border-emerald-500/30 dark:text-emerald-400"
+                        : "bg-rose-50 border border-rose-200 text-rose-800 dark:bg-rose-500/10 dark:border-rose-500/30 dark:text-rose-400"
+                    }`}
+                  >
+                    {statusMessage.type === "success" ? (
+                      <CheckCircle2 className="w-4 h-4 mt-0.5 shrink-0" />
+                    ) : (
+                      <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+                    )}
+                    <span>{statusMessage.text}</span>
+                  </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Name */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-mono uppercase text-slate-700 dark:text-muted-foreground font-semibold">
+                        {t.contact.nameLabel} <span className="text-emerald-600 dark:text-cyan-400">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder={t.contact.namePlaceholder}
+                        required
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-border/70 bg-white dark:bg-background/60 text-slate-900 dark:text-foreground text-sm placeholder:text-slate-400 dark:placeholder:text-muted-foreground/60 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all shadow-sm"
+                      />
+                    </div>
+
+                    {/* Email */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-mono uppercase text-slate-700 dark:text-muted-foreground font-semibold">
+                        {t.contact.emailFormLabel} <span className="text-emerald-600 dark:text-cyan-400">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder={t.contact.emailPlaceholder}
+                        required
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-border/70 bg-white dark:bg-background/60 text-slate-900 dark:text-foreground text-sm placeholder:text-slate-400 dark:placeholder:text-muted-foreground/60 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all shadow-sm"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Subject */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-mono uppercase text-slate-700 dark:text-muted-foreground font-semibold">
+                      {t.contact.subjectLabel} <span className="text-emerald-600 dark:text-cyan-400">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      placeholder={t.contact.subjectPlaceholder}
+                      required
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-border/70 bg-white dark:bg-background/60 text-slate-900 dark:text-foreground text-sm placeholder:text-slate-400 dark:placeholder:text-muted-foreground/60 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all shadow-sm"
+                    />
+                  </div>
+
+                  {/* Message */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-mono uppercase text-slate-700 dark:text-muted-foreground font-semibold">
+                      {t.contact.messageLabel} <span className="text-emerald-600 dark:text-cyan-400">*</span>
+                    </label>
+                    <textarea
+                      name="message"
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder={t.contact.messagePlaceholder}
+                      required
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-border/70 bg-white dark:bg-background/60 text-slate-900 dark:text-foreground text-sm placeholder:text-slate-400 dark:placeholder:text-muted-foreground/60 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all resize-none shadow-sm"
+                    />
+                  </div>
+
+                  {/* Submit button */}
+                  <button
+                    type="submit"
+                    disabled={submitMutation.isPending}
+                    className="w-full py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-md shadow-emerald-500/25 hover:shadow-lg hover:shadow-emerald-500/40 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                  >
+                    {submitMutation.isPending ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>{t.contact.sendingBtn}</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>{t.contact.sendBtn}</span>
+                        <Send className="w-4 h-4 ml-1" />
+                      </>
+                    )}
+                  </button>
+
+                  {/* Alternative Direct Mail Client Trigger */}
+                  <div className="pt-2">
+                    <a
+                      href={`mailto:minhngothien1@gmail.com?subject=${encodeURIComponent(
+                        formData.subject || "[Portfolio Contact] Liên hệ công việc từ " + (formData.name || "Nhà Tuyển Dụng")
+                      )}&body=${encodeURIComponent(
+                        (formData.message ? formData.message + "\n\n---\n" : "") +
+                        "Người gửi: " + (formData.name || "Ẩn danh") + "\nEmail: " + (formData.email || "")
+                      )}`}
+                      className="w-full py-2.5 rounded-xl border border-slate-300 dark:border-border/80 bg-white dark:bg-card/70 hover:bg-slate-100 dark:hover:bg-muted text-xs font-semibold text-slate-700 dark:text-foreground/80 flex items-center justify-center gap-2 transition-all shadow-sm active:scale-[0.99]"
+                      title="Mở ứng dụng gửi Email trên máy tính hoặc điện thoại"
+                    >
+                      <Mail className="w-3.5 h-3.5 text-emerald-600 dark:text-cyan-400" />
+                      <span>{t.contact.openEmailApp}</span>
+                    </a>
+                  </div>
+                </form>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
