@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, FileText } from "lucide-react";
 import { usePortfolioStore, useT } from "../../stores/usePortfolioStore";
 import { ScrollReveal } from "../ui/ScrollReveal";
+import { SpaceGlowButton } from "../ui/SpaceGlowButton";
 import type { ProfileData } from "../../types";
 
 interface HeroSectionProps {
@@ -68,39 +69,56 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                   </button>
                 </Link>
 
-                {/* View CV Button */}
-                <button
+                {/* View CV Space Glow Button */}
+                <SpaceGlowButton
                   onClick={openCvModal}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl font-semibold text-sm border border-emerald-500/50 dark:border-emerald-500/40 bg-emerald-500/10 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-500/20 dark:hover:bg-emerald-500/25 hover:border-emerald-500 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98] transition-all"
-                  title="Xem và tải CV Ngô Minh Thiên"
+                  className="w-full sm:w-auto"
+                  icon={<FileText className="w-4 h-4 text-emerald-400" />}
                 >
-                  <FileText className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  <span>{t.hero.viewCv}</span>
-                </button>
+                  {t.hero.viewCv}
+                </SpaceGlowButton>
 
-                <Link to="/contact" className="w-full sm:w-auto">
-                  <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl font-semibold text-sm border border-slate-300 dark:border-border/80 bg-white dark:bg-card/60 text-slate-800 dark:text-foreground hover:bg-slate-100 dark:hover:bg-card/90 hover:border-slate-400 shadow-sm transition-all active:scale-[0.98]">
-                    <span>{t.hero.contactMe}</span>
-                  </button>
-                </Link>
+                {/* Direct Contact Space Glow Button */}
+                <SpaceGlowButton
+                  to="/contact"
+                  className="w-full sm:w-auto"
+                  icon={<ArrowRight className="w-4 h-4 text-cyan-400" />}
+                >
+                  {t.hero.contactMe}
+                </SpaceGlowButton>
               </div>
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Circular Avatar with Neon Emerald Halo */}
-          <div className="flex-shrink-0 relative group">
+          {/* Right Column: Cosmic Planetary Avatar with Orbit Rings */}
+          <div className="flex-shrink-0 relative group cursor-pointer">
             <ScrollReveal animation="scale-up" delay={250}>
-              {/* Multi-layered Neon Emerald & Teal Glow Rings */}
-              <div className="absolute -inset-10 rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600 opacity-25 dark:opacity-40 blur-3xl group-hover:opacity-45 dark:group-hover:opacity-65 transition-opacity duration-500 pointer-events-none" />
-              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-500 opacity-80 dark:opacity-90 blur-sm pointer-events-none" />
+              {/* 1. Deep Cosmic Solar Flare & Nebula Corona */}
+              <div className="cosmic-corona-pulse absolute -inset-12 rounded-full pointer-events-none" />
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500 opacity-70 group-hover:opacity-100 blur-sm transition-opacity duration-500 pointer-events-none" />
 
-              {/* Circular Avatar Frame */}
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-[4px] border-emerald-500 dark:border-emerald-400 shadow-[0_10px_35px_rgba(16,185,129,0.35)] dark:shadow-[0_0_45px_rgba(16,185,129,0.8),inset_0_0_20px_rgba(16,185,129,0.3)] bg-slate-100 dark:bg-slate-950">
+              {/* 2. Outer Planetary Orbit Ring with Satellite Star */}
+              <div className="cosmic-orbit-1 absolute -inset-8 sm:-inset-10 lg:-inset-12 rounded-full border border-dashed border-emerald-400/25 group-hover:border-emerald-400/60 pointer-events-none transition-colors duration-500">
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-cyan-300 shadow-[0_0_14px_#22d3ee] flex items-center justify-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                </span>
+              </div>
+
+              {/* 3. Inner Counter-Rotating Orbit Ring */}
+              <div className="cosmic-orbit-2 absolute -inset-4 sm:-inset-5 lg:-inset-6 rounded-full border border-cyan-400/20 group-hover:border-cyan-400/50 pointer-events-none transition-colors duration-500">
+                <span className="absolute bottom-0 right-1/4 translate-x-1/2 translate-y-1/2 w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]" />
+              </div>
+
+              {/* 4. Circular Avatar Celestial Frame */}
+              <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-[4px] border-emerald-500 dark:border-emerald-400 group-hover:border-cyan-400 shadow-[0_10px_35px_rgba(16,185,129,0.35)] dark:shadow-[0_0_50px_rgba(16,185,129,0.85),inset_0_0_25px_rgba(16,185,129,0.4)] group-hover:dark:shadow-[0_0_65px_rgba(6,182,212,0.9),inset_0_0_30px_rgba(6,182,212,0.5)] bg-slate-100 dark:bg-slate-950 transition-all duration-500">
                 <img
                   src={avatarUrl}
                   alt="Ngô Minh Thiên - Software Engineer"
-                  className="w-full h-full object-cover object-[center_15%] transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
                 />
+                
+                {/* Subtle Starlight Sheen overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 via-transparent to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               </div>
             </ScrollReveal>
           </div>

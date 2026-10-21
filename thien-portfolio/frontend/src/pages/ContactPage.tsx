@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ContactSection } from "../components/sections/ContactSection";
 import { Clock, ShieldCheck, Zap } from "lucide-react";
-import { usePortfolioStore } from "../stores/usePortfolioStore";
+import { usePortfolioStore, useT } from "../stores/usePortfolioStore";
 import { ScrollReveal } from "../components/ui/ScrollReveal";
 
 export const ContactPage: React.FC = () => {
   const language = usePortfolioStore((s) => s.language);
   const isEn = language === "en";
+  const t = useT();
 
   const highlights = [
     {
@@ -21,8 +22,8 @@ export const ContactPage: React.FC = () => {
       icon: Zap,
       title: isEn ? "Solutions-Driven Mindset" : "Tư duy giải pháp thực tiễn",
       desc: isEn
-        ? "Ready for deep technical dive on software architecture, AI Multi-Agent orchestration, or database optimization."
-        : "Sẵn sàng trao đổi sâu về bài toán kiến trúc phần mềm, tích hợp AI hoặc tối ưu hóa hệ thống hiện tại.",
+        ? "Ready for deep technical dive on software architecture, clean code standards, or database optimization."
+        : "Sẵn sàng trao đổi sâu về bài toán kiến trúc phần mềm, chuẩn hóa Clean Code hoặc tối ưu hóa hệ thống hiện tại.",
     },
     {
       icon: ShieldCheck,
@@ -40,17 +41,15 @@ export const ContactPage: React.FC = () => {
         <ScrollReveal animation="fade-up">
           <div className="space-y-4 max-w-3xl">
             <div className="flex items-center gap-2 text-xs font-mono text-emerald-700 dark:text-cyan-400 uppercase tracking-widest">
-              <Link to="/" className="hover:underline">{isEn ? "Home" : "Trang chủ"}</Link>
+              <Link to="/" className="hover:underline">{t.pages.common.home}</Link>
               <span>/</span>
-              <span className="text-slate-900 dark:text-foreground">{isEn ? "Contact" : "Liên hệ"}</span>
+              <span className="text-slate-900 dark:text-foreground">{t.nav.contact}</span>
             </div>
             <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-slate-900 dark:text-foreground tracking-tight">
-              {isEn ? "Connect & " : "Kết Nối & "}<span className="gradient-text">{isEn ? "Collaborate" : "Hợp Tác Kỹ Thuật"}</span>
+              {t.pages.contact.title} <span className="gradient-text">{t.pages.contact.highlight}</span>
             </h1>
             <p className="text-base sm:text-lg text-slate-600 dark:text-muted-foreground leading-relaxed">
-              {isEn
-                ? "Open for Software Engineer career opportunities, AI system integrations, and technical discussions."
-                : "Tôi luôn sẵn sàng đón nhận các cơ hội việc làm Software Engineer Full-Stack, dự án chuyển đổi AI & Multi-Agent, hoặc các lời mời trao đổi chuyên môn."}
+              {t.pages.contact.subtitle}
             </p>
           </div>
         </ScrollReveal>

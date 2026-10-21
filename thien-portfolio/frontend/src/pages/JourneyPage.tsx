@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Briefcase, GraduationCap, Calendar, CheckCircle2, Building2, ArrowRight, Layers } from "lucide-react";
-import { usePortfolioStore } from "../stores/usePortfolioStore";
+import { useT, usePortfolioStore } from "../stores/usePortfolioStore";
 import { ScrollReveal } from "../components/ui/ScrollReveal";
 import { useJourney } from "../hooks/usePortfolioData";
 
@@ -9,6 +9,7 @@ export const JourneyPage: React.FC = () => {
   const { data: journey } = useJourney();
   const language = usePortfolioStore((s) => s.language);
   const isEn = language === "en";
+  const t = useT();
 
   const workExp = journey?.find((j) => j.type === "work");
   const eduExp = journey?.find((j) => j.type === "education");
@@ -21,17 +22,15 @@ export const JourneyPage: React.FC = () => {
         <ScrollReveal animation="fade-up">
           <div className="space-y-4 max-w-3xl">
             <div className="flex items-center gap-2 text-xs font-mono text-emerald-700 dark:text-cyan-400 uppercase tracking-widest">
-              <Link to="/" className="hover:underline">{isEn ? "Home" : "Trang chủ"}</Link>
+              <Link to="/" className="hover:underline">{t.pages.common.home}</Link>
               <span>/</span>
-              <span className="text-slate-900 dark:text-foreground">{isEn ? "Journey" : "Hành trình"}</span>
+              <span className="text-slate-900 dark:text-foreground">{t.nav.journey}</span>
             </div>
             <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-slate-900 dark:text-foreground tracking-tight">
-              {isEn ? "Career & Educational " : "Hành Trình "}<span className="gradient-text">{isEn ? "Evolution" : "Sự Nghiệp & Đào Tạo"}</span>
+              {t.pages.journey.title} <span className="gradient-text">{t.pages.journey.highlight}</span>
             </h1>
             <p className="text-base sm:text-lg text-slate-600 dark:text-muted-foreground leading-relaxed">
-              {isEn
-                ? "Milestones charting progression from academic excellence to engineering enterprise systems at AITC."
-                : "Dấu ấn phát triển từ môi trường giảng đường đại học chính quy đến quá trình trực tiếp xây dựng và vận hành các hệ thống phần mềm doanh nghiệp tại AITC."}
+              {t.pages.journey.subtitle}
             </p>
           </div>
         </ScrollReveal>
@@ -49,11 +48,11 @@ export const JourneyPage: React.FC = () => {
                 </div>
                 <div className="space-y-1">
                   <h2 className="font-display font-bold text-2xl sm:text-3xl text-slate-900 dark:text-foreground">
-                    {workExp?.company_or_institution || "AITC - Asia Information Technology Center"}
+                    {isEn ? t.journey.companyAitc : (workExp?.company_or_institution || t.journey.companyAitc)}
                   </h2>
                   <div className="flex items-center gap-2 text-sm font-semibold text-emerald-700 dark:text-cyan-400">
                     <Building2 className="w-4 h-4" />
-                    <span>{workExp?.role_or_degree || "Full-Stack Developer"}</span>
+                    <span>{isEn ? t.journey.roleAitc : (workExp?.role_or_degree || t.journey.roleAitc)}</span>
                     <span className="text-slate-500 dark:text-muted-foreground font-normal">• TP. Hồ Chí Minh</span>
                   </div>
                 </div>
@@ -71,9 +70,7 @@ export const JourneyPage: React.FC = () => {
                 {isEn ? "Role Overview & Strategic Impact" : "Tổng Quan Vai Trò & Đóng Góp"}
               </h3>
               <p className="text-sm sm:text-base text-slate-700 dark:text-muted-foreground leading-relaxed">
-                {isEn
-                  ? "At AITC, I established high-throughput full-stack architectures for corporate clients. I actively integrated AI into development cycles to automate anomaly detection, optimize database queries, and streamline API deployment."
-                  : (workExp?.summary || "Tại AITC, tôi khẳng định giá trị của một Full-Stack Developer có tư duy hệ thống vững vàng thông qua việc thiết kế, xây dựng và vận hành các hệ sinh thái phần mềm cấp doanh nghiệp hoạt động ổn định và bền bỉ.")}
+                {workExp?.summary || t.journey.descAitc}
               </p>
             </div>
 
@@ -94,7 +91,7 @@ export const JourneyPage: React.FC = () => {
                   <p className="text-xs text-slate-600 dark:text-muted-foreground leading-relaxed">
                     {isEn
                       ? "Core engineer designing a low-latency dashboard visualizing chatbot interaction logs and live anomaly detection with sub-second feedback."
-                      : "Là thành viên chủ chốt, tôi tận dụng AI để nhanh chóng tiếp cận và làm chủ ngôn ngữ mới, thiết kế thành công bảng điều khiển Dashboard hiệu năng cao giúp trực quan hóa toàn bộ logs tương tác của Chatbot Tân Hòa theo thời gian thực với độ trễ phản hồi cực thấp."}
+                      : "Là thành viên chủ chốt, tôi thiết kế bảng điều khiển Dashboard hiệu năng cao giúp trực quan hóa toàn bộ logs tương tác của Chatbot Tân Hòa theo thời gian thực với độ trễ phản hồi cực thấp."}
                   </p>
                 </div>
 
@@ -107,7 +104,7 @@ export const JourneyPage: React.FC = () => {
                   <p className="text-xs text-slate-600 dark:text-muted-foreground leading-relaxed">
                     {isEn
                       ? "Engineered the official enterprise portal (aitc-jsc.com) with high SEO scores, customized JavaScript visual effects, and fluid responsiveness."
-                      : "Trực tiếp triển khai cổng thông tin chính thức của công ty (aitc-jsc.com) trên nền tảng WordPress kết hợp JavaScript hiện đại nhằm tạo ra các hiệu ứng thị giác tinh tế, đồng thời bảo đảm tiêu chuẩn tối ưu hóa công cụ tìm kiếm (SEO) và tương thích hoàn hảo trên mọi thiết bị."}
+                      : "Trực tiếp triển khai cổng thông tin chính thức của công ty (aitc-jsc.com) trên nền tảng WordPress kết hợp JavaScript hiện đại nhằm tạo ra các hiệu ứng thị giác tinh tế, đồng thời bảo đảm tiêu chuẩn tối ưu hóa công cụ tìm kiếm (SEO)."}
                   </p>
                 </div>
 
@@ -120,7 +117,7 @@ export const JourneyPage: React.FC = () => {
                   <p className="text-xs text-slate-600 dark:text-muted-foreground leading-relaxed">
                     {isEn
                       ? "Automated event guest registration and digital invite delivery (E-Cards) paired with real-time QR code contactless check-in validation."
-                      : "Phát triển nền tảng quản lý sự kiện thông minh tích hợp điểm danh khách mời bằng mã QR động và tự động tạo thiệp điện tử (E-card) cá nhân hóa. Thiết kế các Popup tương tác cao cấp mang lại trải nghiệm check-in không chạm, chính xác và chuyên nghiệp."}
+                      : "Phát triển nền tảng quản lý sự kiện thông minh tích hợp điểm danh khách mời bằng mã QR động và tự động tạo thiệp điện tử (E-card) cá nhân hóa với trải nghiệm check-in không chạm."}
                   </p>
                 </div>
 
@@ -128,12 +125,12 @@ export const JourneyPage: React.FC = () => {
                 <div className="p-5 rounded-2xl border border-slate-200 dark:border-border/60 bg-slate-50 dark:bg-muted/20 space-y-2.5">
                   <div className="flex items-center justify-between">
                     <h4 className="font-bold text-base text-slate-900 dark:text-foreground">4. Equipment Management System</h4>
-                    <span className="text-[10px] font-mono text-emerald-700 dark:text-cyan-400 bg-emerald-50 dark:bg-cyan-500/10 px-2 py-0.5 rounded">AI Hardware Spec</span>
+                    <span className="text-[10px] font-mono text-emerald-700 dark:text-cyan-400 bg-emerald-50 dark:bg-cyan-500/10 px-2 py-0.5 rounded">Hardware Spec</span>
                   </div>
                   <p className="text-xs text-slate-600 dark:text-muted-foreground leading-relaxed">
                     {isEn
-                      ? "Enterprise hardware asset lifecycle platform featuring AI-assisted spec comparison, smart Excel filtering, and predictive maintenance schedules."
-                      : "Triển khai hệ thống quản trị vòng đời thiết bị với công cụ so sánh cấu hình phần cứng và theo dõi lịch bảo trì tự động. Tích hợp AI thông minh để phân tích thông số kỹ thuật và lọc trường dữ liệu phức tạp trong quá trình nhập liệu file Excel lớn, chuyển đổi dữ liệu thô thành giao diện trực quan và dễ tìm kiếm."}
+                      ? "Enterprise hardware asset lifecycle platform featuring spec comparison, smart Excel filtering, and maintenance schedules."
+                      : "Triển khai hệ thống quản trị vòng đời thiết bị với công cụ so sánh cấu hình phần cứng và theo dõi lịch bảo trì tự động, hỗ trợ xử lý dữ liệu file Excel lớn mượt mà."}
                   </p>
                 </div>
               </div>
@@ -145,9 +142,9 @@ export const JourneyPage: React.FC = () => {
                 {isEn ? "Core Technologies Operated at AITC:" : "Hệ thống công nghệ đã vận hành tại AITC:"}
               </span>
               <div className="flex flex-wrap gap-2">
-                {["React", "FastAPI (Python)", "Node.js", "MongoDB", "MySQL", "Docker", "Tailwind CSS", "WordPress", "WebSockets"].map((t) => (
-                  <span key={t} className="text-xs font-mono px-3 py-1 rounded-lg bg-slate-100 dark:bg-card border border-slate-200 dark:border-border/60 text-slate-800 dark:text-foreground">
-                    {t}
+                {["React", "FastAPI (Python)", "Node.js", "MongoDB", "MySQL", "Docker", "Tailwind CSS", "WordPress"].map((tech) => (
+                  <span key={tech} className="text-xs font-mono px-3 py-1 rounded-lg bg-slate-100 dark:bg-card border border-slate-200 dark:border-border/60 text-slate-800 dark:text-foreground">
+                    {tech}
                   </span>
                 ))}
               </div>
@@ -165,11 +162,11 @@ export const JourneyPage: React.FC = () => {
                 </div>
                 <div className="space-y-1">
                   <h2 className="font-display font-bold text-2xl sm:text-3xl text-slate-900 dark:text-foreground">
-                    {eduExp?.company_or_institution || "University of Technology Ho Chi Minh City (HUTECH)"}
+                    {isEn ? t.journey.schoolEdu : (eduExp?.company_or_institution || t.journey.schoolEdu)}
                   </h2>
                   <div className="flex items-center gap-2 text-sm font-semibold text-indigo-700 dark:text-indigo-400">
                     <GraduationCap className="w-4 h-4" />
-                    <span>{eduExp?.role_or_degree || (isEn ? "Bachelor of Science in Software Engineering" : "Cử nhân Kỹ thuật Phần mềm (Software Engineering)")}</span>
+                    <span>{isEn ? t.journey.roleEdu : (eduExp?.role_or_degree || t.journey.roleEdu)}</span>
                   </div>
                 </div>
               </div>
@@ -182,14 +179,12 @@ export const JourneyPage: React.FC = () => {
 
             <div className="space-y-4 text-sm sm:text-base text-slate-700 dark:text-muted-foreground leading-relaxed">
               <p>
-                {isEn
-                  ? "Four years of rigorous Software Engineering education instilling systematic computer science fundamentals, algorithmic problem solving, and software quality assurance:"
-                  : (eduExp?.summary || "Suốt 4 năm đào tạo chính quy, tôi tập trung rèn luyện tư duy thuật toán, phương pháp luận kỹ thuật phần mềm và khả năng nghiên cứu độc lập.")}
+                {eduExp?.summary || t.journey.descEdu}
               </p>
               <ul className="space-y-2 text-xs sm:text-sm">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
-                  <span>{isEn ? "Solid mastery of core object-oriented languages: C#, Java, Python, and full-stack web engineering." : "Nắm vững các ngôn ngữ nền tảng hướng đối tượng: C#, Java, Python và kỹ thuật lập trình web hiện đại."}</span>
+                  <span>{isEn ? "Solid mastery of core object-oriented languages: C#, Java, PHP, and full-stack web engineering." : "Nắm vững các ngôn ngữ nền tảng hướng đối tượng: C#, Java, PHP và kỹ thuật lập trình web hiện đại."}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
@@ -209,13 +204,13 @@ export const JourneyPage: React.FC = () => {
           <div className="pt-8 border-t border-slate-200 dark:border-border/60 flex flex-wrap items-center justify-between gap-4">
             <Link to="/projects">
               <button className="inline-flex items-center gap-2 h-11 px-6 rounded-xl font-bold text-sm bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-md shadow-emerald-500/25 hover:shadow-lg transition-all">
-                <span>{isEn ? "Discover Projects Built at AITC" : "Khám phá chi tiết các dự án đã làm"}</span>
+                <span>{t.pages.journey.viewProjectsBtn}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </Link>
             <Link to="/skills">
               <button className="inline-flex items-center gap-2 h-11 px-6 rounded-xl font-semibold text-sm border border-slate-300 dark:border-emerald-500/40 bg-white dark:bg-emerald-500/10 text-slate-800 dark:text-emerald-300 hover:bg-slate-100 transition-all shadow-sm">
-                <span>{isEn ? "View Skill Matrix" : "Xem ma trận kỹ năng"}</span>
+                <span>{t.pages.journey.exploreSkillsBtn}</span>
               </button>
             </Link>
           </div>

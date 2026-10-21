@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2, MessageSquare } from "lucide-react";
 import { GithubIcon } from "../ui/Icons";
 import { Badge } from "../ui/Badge";
+import { ModernDockSocials } from "../ui/ModernDockSocials";
 import { useT } from "../../stores/usePortfolioStore";
 import { ScrollReveal } from "../ui/ScrollReveal";
 import { useSubmitContact } from "../../hooks/usePortfolioData";
@@ -80,8 +81,13 @@ export const ContactSection: React.FC = () => {
                   {t.contact.directSubtitle}
                 </p>
 
+                {/* Modern Floating Squircle Dock */}
+                <div className="pt-1 pb-2">
+                  <ModernDockSocials />
+                </div>
+
                 {/* Direct Channels */}
-                <div className="space-y-3 pt-2">
+                <div className="space-y-3 pt-1">
                   {/* Phone */}
                   <a
                     href="tel:0987176434"

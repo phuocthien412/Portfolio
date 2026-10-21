@@ -1,7 +1,7 @@
 import React from "react";
 import { Briefcase, GraduationCap, Calendar, CheckCircle2, Building2 } from "lucide-react";
 import { Badge } from "../ui/Badge";
-import { usePortfolioStore } from "../../stores/usePortfolioStore";
+import { usePortfolioStore, useT } from "../../stores/usePortfolioStore";
 import { ScrollReveal } from "../ui/ScrollReveal";
 import type { ExperienceItem } from "../../types";
 
@@ -12,6 +12,7 @@ interface JourneyTimelineProps {
 export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({ journey }) => {
   const language = usePortfolioStore((s) => s.language);
   const isEn = language === "en";
+  const t = useT();
 
   const workExp = journey?.find((j) => j.type === "work");
   const eduExp = journey?.find((j) => j.type === "education");
@@ -24,15 +25,13 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({ journey }) => 
         <ScrollReveal animation="fade-up">
           <div className="space-y-3 mb-20 text-center max-w-3xl mx-auto">
             <Badge variant="emerald" className="mx-auto">
-              {isEn ? "Career Timeline" : "Timeline Sự Nghiệp"}
+              {t.journey.sectionBadge}
             </Badge>
             <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-foreground">
-              {isEn ? "Professional " : "Hành Trình "}<span className="gradient-text">{isEn ? "Journey & Pedigree" : "Kinh Nghiệm & Học Tập"}</span>
+              {t.pages.journey.title} <span className="gradient-text">{t.pages.journey.highlight}</span>
             </h2>
             <p className="text-base text-slate-600 dark:text-muted-foreground leading-relaxed">
-              {isEn
-                ? "Milestones from foundational academic education at HUTECH to production enterprise solutions at AITC."
-                : "Dấu ấn từ môi trường giảng đường đại học đến môi trường doanh nghiệp thực chiến tại AITC."}
+              {t.pages.journey.subtitle}
             </p>
           </div>
         </ScrollReveal>
@@ -61,52 +60,47 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({ journey }) => 
                       <span>{workExp?.period || "08/2025 – 06/2026"}</span>
                     </div>
                     <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-900 dark:text-foreground">
-                      {workExp?.company_or_institution || "AITC - Asia Information Technology Center"}
+                      {isEn ? t.journey.companyAitc : (workExp?.company_or_institution || t.journey.companyAitc)}
                     </h3>
-                    <div className="flex items-center gap-2 text-sm font-semibold text-emerald-700 dark:text-cyan-400 md:justify-end">
+                    <div className="flex items-center gap-2 md:justify-end text-sm font-semibold text-emerald-700 dark:text-cyan-400">
                       <Building2 className="w-4 h-4" />
-                      <span>{workExp?.role_or_degree || "Full-Stack Developer"}</span>
+                      <span>{isEn ? t.journey.roleAitc : (workExp?.role_or_degree || t.journey.roleAitc)}</span>
                     </div>
                     <p className="text-xs text-slate-500 dark:text-muted-foreground">
-                      {workExp?.location || "TP. Hồ Chí Minh"} • {isEn ? "Enterprise IT Solutions" : "Doanh nghiệp Công Nghệ Thông Tin"}
+                      {workExp?.location || "TP. Hồ Chí Minh"} • {isEn ? "Full-Time Position" : "Chính thức"}
                     </p>
                   </div>
                 </ScrollReveal>
               </div>
 
-              {/* Right Side (Desktop: Detailed Achievements) */}
+              {/* Right Side (Desktop: Detailed Achievements Card) */}
               <div className="pl-12 md:pl-12 md:w-1/2">
                 <ScrollReveal animation="fade-left">
-                  <div className="rounded-2xl border border-slate-200 dark:border-border/80 bg-white dark:bg-card/70 backdrop-blur-md p-6 space-y-4 hover:border-emerald-500/40 transition-all duration-300 shadow-sm hover:shadow-md">
-                    <p className="text-sm text-slate-800 dark:text-foreground/90 leading-relaxed font-medium">
-                      {isEn
-                        ? "At AITC, I spearheaded engineering across mission-critical enterprise systems:"
-                        : (workExp?.summary || "Tại AITC, tôi khẳng định năng lực của một Full-Stack Developer qua việc xây dựng và vận hành các hệ sinh thái phần mềm doanh nghiệp ổn định:")}
+                  <div className="rounded-3xl border border-slate-200 dark:border-border/70 bg-white dark:bg-card/70 backdrop-blur-xl p-6 sm:p-7 space-y-4 hover:border-emerald-500/50 hover:shadow-lg transition-all shadow-sm">
+                    <p className="text-xs sm:text-sm text-slate-700 dark:text-muted-foreground leading-relaxed">
+                      {workExp?.summary || t.journey.descAitc}
                     </p>
 
-                    <ul className="space-y-2.5 text-xs text-slate-600 dark:text-muted-foreground">
+                    {/* Highlights List */}
+                    <ul className="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-muted-foreground">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-cyan-400 shrink-0 mt-0.5" />
-                        <span><strong className="text-slate-900 dark:text-foreground">Tân Hòa Chatbot Dashboard:</strong> {isEn ? "Engineered real-time analytics dashboard visualizing conversation flows and automated anomaly detection." : "Thiết kế bảng điều khiển dashboard thời gian thực giúp trực quan hóa logs tương tác và phát hiện cảnh báo bất thường."}</span>
+                        <span>{isEn ? "Engineered real-time logs dashboard with sub-second latency and automated data filtering." : "Xây dựng Dashboard giám sát log thời gian thực với độ trễ phản hồi cực thấp."}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-cyan-400 shrink-0 mt-0.5" />
-                        <span><strong className="text-slate-900 dark:text-foreground">AITC Official Portal:</strong> {isEn ? "Delivered official company web application (aitc-jsc.com) with top-tier SEO and responsive performance." : "Triển khai website chính thức (aitc-jsc.com) với hiệu ứng JavaScript cao cấp, chuẩn SEO và tương thích tối đa."}</span>
+                        <span>{isEn ? "Deployed 4 core enterprise solutions: AITC Portal, QR Code E-Card, Asset Management." : "Trực tiếp thiết kế và triển khai 4 giải pháp: Website AITC, E-Card QR Code, Hệ thống quản lý thiết bị."}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-cyan-400 shrink-0 mt-0.5" />
-                        <span><strong className="text-slate-900 dark:text-foreground">QR CODE - ECARD:</strong> {isEn ? "Guest management platform automating personalized digital greeting cards and instant check-in verification." : "Nền tảng quản lý khách sự kiện, tự động hóa tạo thiệp điện tử cá nhân hóa và popup check-in thông minh."}</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-cyan-400 shrink-0 mt-0.5" />
-                        <span><strong className="text-slate-900 dark:text-foreground">Hardware Lifecycle Manager:</strong> {isEn ? "Enterprise asset lifecycle tracking with AI-powered spec matching and intelligent spreadsheet parsing." : "Hệ thống quản lý vòng đời thiết bị, công cụ so sánh thông số phần cứng và lọc dữ liệu Excel thông minh bằng AI."}</span>
+                        <span>{isEn ? "Maintained strict Clean Code, type-safety, and query optimization on MongoDB/MySQL." : "Tập trung chuẩn hóa Clean Code, tối ưu truy vấn cơ sở dữ liệu MongoDB/MySQL và quy trình Docker CI/CD."}</span>
                       </li>
                     </ul>
 
-                    {/* Tech tags */}
+                    {/* Tech Stack Chips */}
                     <div className="pt-2 flex flex-wrap gap-1.5 border-t border-slate-200 dark:border-border/50">
-                      {(workExp?.tech_stack || ["React", "FastAPI", "Python", "MongoDB", "Node.js", "Docker", "Tailwind CSS", "WordPress"]).map((t) => (
-                        <span key={t} className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-secondary text-slate-700 dark:text-secondary-foreground border border-slate-200 dark:border-border/40">
+                      {(workExp?.tech_stack || ["React", "FastAPI", "Python", "MongoDB", "MySQL", "Docker", "Tailwind CSS"]).map((t) => (
+                        <span key={t} className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-muted text-slate-700 dark:text-muted-foreground border border-slate-200 dark:border-border/40">
                           {t}
                         </span>
                       ))}
@@ -116,27 +110,25 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({ journey }) => 
               </div>
             </div>
 
-            {/* Milestone 2: University Education */}
+            {/* Milestone 2: University Formal Education */}
             <div className="relative flex flex-col md:flex-row items-start md:items-center gap-8 group">
               {/* Center Dot Indicator */}
-              <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full border-2 border-indigo-500 dark:border-indigo-400 bg-white dark:bg-background flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.5)] z-20 group-hover:scale-110 transition-transform">
+              <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full border-2 border-indigo-500 bg-white dark:bg-background flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.5)] z-20 group-hover:scale-110 transition-transform">
                 <GraduationCap className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
               </div>
 
-              {/* Left Side (Desktop: Detailed Studies) */}
+              {/* Left Side (Desktop: Detailed Education Card) */}
               <div className="pl-12 md:pl-0 md:w-1/2 md:pr-12 order-2 md:order-1">
                 <ScrollReveal animation="fade-right">
-                  <div className="rounded-2xl border border-slate-200 dark:border-border/80 bg-white dark:bg-card/70 backdrop-blur-md p-6 space-y-4 hover:border-indigo-500/40 transition-all duration-300 shadow-sm hover:shadow-md">
-                    <p className="text-sm text-slate-800 dark:text-foreground/90 leading-relaxed font-medium">
-                      {isEn
-                        ? "Rigorous Computer Science & Software Engineering curriculum equipping disciplined problem solving:"
-                        : (eduExp?.summary || "Chương trình đào tạo Kỹ thuật Phần mềm chính quy trang bị tư duy giải quyết vấn đề có hệ thống và phương pháp luận kỹ thuật phần mềm chuẩn:")}
+                  <div className="rounded-3xl border border-slate-200 dark:border-border/70 bg-white dark:bg-card/70 backdrop-blur-xl p-6 sm:p-7 space-y-4 hover:border-indigo-500/50 hover:shadow-lg transition-all shadow-sm">
+                    <p className="text-xs sm:text-sm text-slate-700 dark:text-muted-foreground leading-relaxed">
+                      {eduExp?.summary || t.journey.descEdu}
                     </p>
 
-                    <ul className="space-y-2 text-xs text-slate-600 dark:text-muted-foreground">
+                    <ul className="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-muted-foreground">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
-                        <span>{isEn ? "Proficient in Algorithms, Data Structures, OOP principles with C#, Java, and Python." : "Thành thạo cấu trúc dữ liệu, giải thuật, lập trình hướng đối tượng (OOP) với C#, Java và Python."}</span>
+                        <span>{isEn ? "Core foundations in OOP, Data Structures, Algorithms, Software Architectures (Java, C#, JavaScript, PHP)." : "Nền tảng vững chắc về OOP, cấu trúc dữ liệu, giải thuật và kiến trúc phần mềm (Java, C#, JavaScript, PHP)."}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
@@ -149,7 +141,7 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({ journey }) => 
                     </ul>
 
                     <div className="pt-2 flex flex-wrap gap-1.5 border-t border-slate-200 dark:border-border/50">
-                      {(eduExp?.tech_stack || ["Software Engineering", "OOP", "Data Structures", "Algorithms", "C#", "Java", "Python"]).map((t) => (
+                      {(eduExp?.tech_stack || ["Software Engineering", "OOP", "Data Structures", "Algorithms", "Java", "C#", "JavaScript", "HTML", "PHP"]).map((t) => (
                         <span key={t} className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-secondary text-slate-700 dark:text-secondary-foreground border border-slate-200 dark:border-border/40">
                           {t}
                         </span>
@@ -168,11 +160,11 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({ journey }) => 
                       <span>{eduExp?.period || "2021 – 2025"}</span>
                     </div>
                     <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-900 dark:text-foreground">
-                      {eduExp?.company_or_institution || "University of Technology Ho Chi Minh City (HUTECH)"}
+                      {isEn ? t.journey.schoolEdu : (eduExp?.company_or_institution || t.journey.schoolEdu)}
                     </h3>
                     <div className="flex items-center gap-2 text-sm font-semibold text-indigo-700 dark:text-indigo-400">
                       <GraduationCap className="w-4 h-4" />
-                      <span>{eduExp?.role_or_degree || (isEn ? "Bachelor of Science in Software Engineering" : "Major: Software Engineering (Kỹ thuật phần mềm)")}</span>
+                      <span>{isEn ? t.journey.roleEdu : (eduExp?.role_or_degree || t.journey.roleEdu)}</span>
                     </div>
                     <p className="text-xs text-slate-500 dark:text-muted-foreground">
                       {eduExp?.location || "TP. Hồ Chí Minh"} • {isEn ? "Regular Degree Program • Graduated 2025" : "Hệ Cử nhân chính quy • Tốt nghiệp 2025"}

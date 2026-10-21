@@ -56,15 +56,9 @@ export const usePortfolioStore = create<PortfolioStoreState>((set, get) => ({
     const next = current === "dark" ? "light" : "dark";
 
     if (typeof document !== "undefined") {
-      // Add transition class for smooth visual morphing
-      document.documentElement.classList.add("theme-transition");
       document.documentElement.classList.remove("dark", "light");
       document.documentElement.classList.add(next);
       localStorage.setItem("thien_portfolio_theme", next);
-
-      setTimeout(() => {
-        document.documentElement.classList.remove("theme-transition");
-      }, 500);
     }
 
     set({ theme: next });
@@ -72,14 +66,9 @@ export const usePortfolioStore = create<PortfolioStoreState>((set, get) => ({
 
   setTheme: (theme) => {
     if (typeof document !== "undefined") {
-      document.documentElement.classList.add("theme-transition");
       document.documentElement.classList.remove("dark", "light");
       document.documentElement.classList.add(theme);
       localStorage.setItem("thien_portfolio_theme", theme);
-
-      setTimeout(() => {
-        document.documentElement.classList.remove("theme-transition");
-      }, 500);
     }
     set({ theme });
   },

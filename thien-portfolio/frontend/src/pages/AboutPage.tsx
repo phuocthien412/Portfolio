@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { GraduationCap, Award, ShieldCheck, Cpu, Code, Layers, Zap, Mail, Phone, ArrowRight } from "lucide-react";
 import { GithubIcon } from "../components/ui/Icons";
 import { Badge } from "../components/ui/Badge";
-import { usePortfolioStore } from "../stores/usePortfolioStore";
+import { useT, usePortfolioStore } from "../stores/usePortfolioStore";
 import { ScrollReveal } from "../components/ui/ScrollReveal";
 import { useProfile } from "../hooks/usePortfolioData";
 
@@ -11,12 +11,13 @@ export const AboutPage: React.FC = () => {
   const { data: profile } = useProfile();
   const language = usePortfolioStore((s) => s.language);
   const isEn = language === "en";
+  const t = useT();
   const avatarUrl = profile?.avatar_url || "/avatar-thien.jpg";
 
   const stats = [
     {
       label: isEn ? "Practical Experience" : "Kinh nghiệm thực tế",
-      value: "2+ " + (isEn ? "Years" : "Năm"),
+      value: "1+ " + (isEn ? "Years" : "Năm"),
       desc: isEn ? "Enterprise software engineering & research" : "Nghiên cứu & phát triển phần mềm doanh nghiệp",
       icon: Award,
     },
@@ -29,7 +30,7 @@ export const AboutPage: React.FC = () => {
     {
       label: isEn ? "Languages Mastered" : "Ngôn ngữ làm chủ",
       value: "6+ " + (isEn ? "Languages" : "Ngôn ngữ"),
-      desc: "Python, JavaScript, TypeScript, C#, Java, PHP",
+      desc: "TypeScript, Python, JavaScript, C#, Java, PHP",
       icon: Code,
     },
     {
@@ -42,32 +43,32 @@ export const AboutPage: React.FC = () => {
 
   const pillars = [
     {
-      icon: Cpu,
-      title: isEn ? "AI & Multi-Agent System Integration" : "Tích hợp AI & Multi-Agent Architecture",
-      description: isEn
-        ? "Actively incorporating Large Language Models (LLMs), prompt engineering, and multi-agent coordination into production pipelines to automate complex workflows and accelerate software engineering cycles."
-        : "Tôi chủ động áp dụng các mô hình ngôn ngữ lớn (LLMs), Prompt Engineering và kiến trúc đa tác nhân (Multi-Agent) nhằm tự động hóa quy trình phân tích dữ liệu, nhận diện bất thường và tăng tốc độ phát triển phần mềm gấp nhiều lần.",
-    },
-    {
       icon: Layers,
-      title: isEn ? "System Architecture & Clean Code" : "Kiến trúc hệ thống chuẩn mực & Clean Code",
+      title: isEn ? "Clean Code & Modular Structure" : "Clean Code & Cấu Trúc Mã Nguồn Rõ Ràng",
       description: isEn
-        ? "Adhering strictly to SOLID, Clean Architecture, and clear separation of concerns across Routes, Controllers, Services, and Data Access Layers. Frontend built with modern React, Zustand, and TanStack Query patterns."
-        : "Luôn áp dụng các nguyên tắc thiết kế phần mềm bền vững: Single Responsibility, Dependency Inversion, phân tách rõ ràng giữa Routes, Controller, Services và Data Access Layer. Frontend sử dụng các pattern tân tiến với React, Zustand và TanStack Query.",
+        ? "Focusing on readability, modular project organization (routes, services, schemas), clean naming conventions, and reusable React components over premature complexity."
+        : "Ưu tiên code dễ đọc, dễ bảo trì với cấu trúc phân tách rõ ràng giữa Routes, Services và Schemas. Tận dụng tính tái sử dụng của React Component và TypeScript chặt chẽ thay vì làm phức tạp hóa vấn đề.",
     },
     {
       icon: Zap,
-      title: isEn ? "High Performance & Low Latency" : "Hiệu năng cao & Độ trễ tối thiểu",
+      title: isEn ? "Async Thinking & Query Awareness" : "Tư Duy Bất Đồng Bộ & Tối Ưu Truy Vấn",
       description: isEn
-        ? "Leveraging asynchronous I/O architectures in Python FastAPI and Node.js. Database query indexing optimizations in MongoDB and MySQL, paired with WebSockets for real-time streaming under 150ms."
-        : "Khai thác tối đa cơ chế bất đồng bộ (Async I/O) trên Python FastAPI và Node.js. Thiết kế chỉ mục (Indexing) tối ưu trên cơ sở dữ liệu MongoDB và MySQL, kết hợp WebSockets cho dữ liệu streaming thời gian thực với độ trễ dưới 150ms.",
+        ? "Leveraging non-blocking async/await in Python FastAPI and Node.js. Applying proper database indexes on primary query fields in MongoDB and MySQL to maintain responsive APIs."
+        : "Vận dụng cơ chế bất đồng bộ (async/await) trong Python FastAPI và Node.js; chủ động thiết lập chỉ mục (index) cho các trường truy vấn thường xuyên trên MongoDB và MySQL để API luôn phản hồi nhanh.",
+    },
+    {
+      icon: Cpu,
+      title: isEn ? "Pragmatic Automation & Real-world Workflows" : "Thực Chiến & Tự Động Hóa Thực Tế",
+      description: isEn
+        ? "Solving practical product challenges: building data handling workflows, normalizing inputs, seamless API integrations, and intuitive monitoring dashboards."
+        : "Tập trung giải quyết bài toán thực tế của sản phẩm: xây dựng pipeline xử lý dữ liệu, chuẩn hóa biểu mẫu Excel, tích hợp API mượt mà và dựng dashboard trực quan để theo dõi log hiệu quả.",
     },
     {
       icon: ShieldCheck,
-      title: isEn ? "Production Stability & Observability" : "Bền bỉ trong môi trường Production",
+      title: isEn ? "Disciplined Workflow & Environment Parity" : "Kỷ Luật Quy Trình & Tính Ổn Định",
       description: isEn
-        ? "Dockerized reproducible runtime environments, secure secrets management (.env), automated health checks, structured error logging, and resilient fallback handling for maximum reliability."
-        : "Đóng gói đồng nhất với Docker, quản lý cấu hình và biến môi trường (.env) an toàn, tích hợp hệ thống kiểm tra sức khỏe (Health Check) và xử lý ngoại lệ chặt chẽ, đảm bảo tính sẵn sàng cao (High Availability).",
+        ? "Maintaining disciplined Git practices, containerizing apps with Docker for environment parity, safeguarding environment variables (.env), and handling edge cases with care."
+        : "Tuân thủ quy trình Git khoa học, đóng gói ứng dụng với Docker để đảm bảo môi trường dev/staging đồng nhất, quản lý biến môi trường (.env) an toàn và cẩn trọng trong từng khâu xử lý ngoại lệ.",
     },
   ];
 
@@ -79,17 +80,15 @@ export const AboutPage: React.FC = () => {
         <ScrollReveal animation="fade-up">
           <div className="space-y-4 max-w-3xl">
             <div className="flex items-center gap-2 text-xs font-mono text-emerald-700 dark:text-cyan-400 uppercase tracking-widest">
-              <Link to="/" className="hover:underline">{isEn ? "Home" : "Trang chủ"}</Link>
+              <Link to="/" className="hover:underline">{t.pages.common.home}</Link>
               <span>/</span>
-              <span className="text-slate-900 dark:text-foreground">{isEn ? "About Me" : "Về tôi"}</span>
+              <span className="text-slate-900 dark:text-foreground">{t.nav.about}</span>
             </div>
             <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-slate-900 dark:text-foreground tracking-tight">
-              {isEn ? "Engineering Story & " : "Câu Chuyện & "}<span className="gradient-text">{isEn ? "Philosophy" : "Triết Lý Kỹ Thuật"}</span>
+              {t.pages.about.title} <span className="gradient-text">{t.pages.about.highlight}</span>
             </h1>
             <p className="text-base sm:text-lg text-slate-600 dark:text-muted-foreground leading-relaxed">
-              {isEn
-                ? "Explore the architectural mindset, educational pedigree, and growth trajectory of Ngo Minh Thien."
-                : "Khám phá tư duy kiến trúc phần mềm, hành trình đào tạo chính quy và định hướng phát triển của Ngô Minh Thiên."}
+              {t.pages.about.subtitle}
             </p>
           </div>
         </ScrollReveal>
@@ -120,10 +119,10 @@ export const AboutPage: React.FC = () => {
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" title="Available" />
                   </div>
                   <p className="text-xs font-mono text-emerald-700 dark:text-cyan-400 font-semibold uppercase tracking-wider">
-                    Software Engineer & AI Systems Integrator
+                    {t.hero.role}
                   </p>
                   <p className="text-xs text-slate-500 dark:text-muted-foreground">
-                    Phường Phú Thuận, Quận 7, TP. Hồ Chí Minh
+                    {t.contact.addressValue}
                   </p>
                 </div>
 
@@ -175,27 +174,21 @@ export const AboutPage: React.FC = () => {
             <ScrollReveal animation="fade-left">
               <div className="rounded-3xl border border-slate-200 dark:border-border/80 bg-white dark:bg-card/60 backdrop-blur-md p-7 sm:p-9 space-y-6 shadow-sm">
                 <div className="space-y-3">
-                  <Badge variant="emerald">{isEn ? "Career Objective" : "Mục Tiêu Sự Nghiệp"}</Badge>
+                  <Badge variant="emerald">{t.pages.about.storyTitle}</Badge>
                   <h3 className="font-display font-bold text-2xl sm:text-3xl text-slate-900 dark:text-foreground">
-                    {isEn ? "Pioneering AI Integration in Enterprise Systems" : "Tiên phong tích hợp AI vào giải pháp phần mềm cấp doanh nghiệp"}
+                    {t.pages.about.storyP1}
                   </h3>
                 </div>
 
                 <div className="space-y-4 text-sm sm:text-base text-slate-700 dark:text-muted-foreground leading-relaxed">
                   <p>
-                    {isEn
-                      ? "I am a Full-Stack Software Engineer proficient across the entire software development lifecycle: from requirements analysis and distributed architecture design to high-throughput backend APIs, database optimization, and intuitive frontend experiences."
-                      : "Tôi là một Full-Stack Software Engineer có khả năng làm chủ cả chu kỳ phát triển phần mềm: từ giai đoạn khảo sát yêu cầu, thiết kế kiến trúc hệ thống, xây dựng backend API hiệu năng cao, tối ưu cơ sở dữ liệu cho tới phát triển giao diện người dùng mượt mà và trực quan."}
+                    {t.pages.about.storyP2}
                   </p>
                   <p>
-                    {isEn
-                      ? "My key differentiator lies in harnessing the capabilities of Artificial Intelligence (AI) and Multi-Agent Systems. I actively integrate AI into systems to automate complex analytics, detect anomalies early, and deliver intelligent, scalable features directly to end-users."
-                      : "Điểm khác biệt cốt lõi trong tư duy phát triển của tôi là tận dụng sức mạnh của trí tuệ nhân tạo (AI) và kiến trúc đa tác nhân (Multi-Agent). Thay vì phát triển phần mềm theo lối mòn truyền thống, tôi sử dụng AI để tự động hóa khâu nghiên cứu kỹ thuật, sinh mã nguồn chuẩn hóa, phát hiện sớm rủi ro hệ thống và trực tiếp nhúng các tính năng AI thông minh vào ứng dụng thực tế."}
+                    {t.about.bio1}
                   </p>
                   <p>
-                    {isEn
-                      ? "I believe great software is measured not only by functionality, but by Clean Code quality, high maintainability, resilience under scale, and an exceptional user experience."
-                      : "Tôi tin rằng một phần mềm tốt không chỉ dừng lại ở việc đáp ứng đúng tính năng, mà phải được viết bằng mã nguồn sạch (Clean Code), dễ bảo trì (Maintainable), có tính mở rộng cao (Scalable) và mang lại trải nghiệm thân thiện, mượt mà nhất cho người sử dụng cuối cùng."}
+                    {t.about.bio2}
                   </p>
                 </div>
 
@@ -203,24 +196,22 @@ export const AboutPage: React.FC = () => {
                 <div className="pt-6 border-t border-slate-200 dark:border-border/60 space-y-4">
                   <div className="flex items-center gap-2 text-xs font-mono uppercase text-emerald-700 dark:text-cyan-400 font-semibold">
                     <GraduationCap className="w-4 h-4" />
-                    <span>{isEn ? "Formal Academic Foundation" : "Nền Tảng Học Vấn Chính Quy"}</span>
+                    <span>{t.pages.about.educationTitle}</span>
                   </div>
                   <div className="rounded-2xl border border-slate-200 dark:border-border/60 bg-slate-50 dark:bg-muted/20 p-5 space-y-3">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                       <h4 className="font-display font-bold text-lg text-slate-900 dark:text-foreground">
-                        University of Technology Ho Chi Minh City (HUTECH)
+                        {t.pages.about.institution}
                       </h4>
                       <span className="text-xs font-mono text-emerald-700 dark:text-cyan-400 bg-emerald-50 dark:bg-cyan-500/10 px-2.5 py-0.5 rounded-full border border-emerald-200 dark:border-cyan-500/25">
-                        2021 – 2025
+                        {t.pages.about.eduPeriod}
                       </span>
                     </div>
                     <p className="text-xs sm:text-sm font-semibold text-emerald-700 dark:text-cyan-400">
-                      {isEn ? "Bachelor of Science in Software Engineering" : "Cử nhân Kỹ thuật Phần mềm (Software Engineering)"}
+                      {t.pages.about.degree}
                     </p>
                     <p className="text-xs text-slate-600 dark:text-muted-foreground leading-relaxed">
-                      {isEn
-                        ? "Rigorous curriculum encompassing Advanced Algorithms, Object-Oriented Design (OOP), Distributed Systems, Database Management Systems (RDBMS & NoSQL), Network Security, and Agile/Scrum methodologies."
-                        : "Được đào tạo chính quy và bài bản theo các tiêu chuẩn quốc tế về kỹ thuật phần mềm: Cấu trúc dữ liệu và giải thuật nâng cao, Lập trình hướng đối tượng (OOP), Kiến trúc hệ thống phân tán, Hệ quản trị cơ sở dữ liệu (RDBMS & NoSQL), Bảo mật ứng dụng và Phương pháp luận Agile/Scrum."}
+                      {t.pages.about.eduDesc}
                     </p>
                   </div>
                 </div>
@@ -233,12 +224,12 @@ export const AboutPage: React.FC = () => {
         <div className="space-y-8 pt-6">
           <ScrollReveal animation="fade-up">
             <div className="space-y-2 text-center max-w-2xl mx-auto">
-              <Badge variant="emerald" className="mx-auto">{isEn ? "Core Pillars" : "Nguyên Tắc Cốt Lõi"}</Badge>
+              <Badge variant="emerald" className="mx-auto">{t.pages.about.pillarsTitle}</Badge>
               <h2 className="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-foreground">
-                {isEn ? "4 Technical Pillars of " : "4 Trụ Cột Kỹ Thuật Đảm Bảo "}<span className="gradient-text">{isEn ? "Excellence" : "Chất Lượng"}</span>
+                <span className="gradient-text">{t.about.philosophyTitle}</span>
               </h2>
               <p className="text-sm text-slate-600 dark:text-muted-foreground">
-                {isEn ? "Standards applied rigorously across every project and repository." : "Những tiêu chí bất di bất dịch tôi áp dụng trong từng dòng code và mọi dự án đảm nhận."}
+                {t.about.philosophyText}
               </p>
             </div>
           </ScrollReveal>
@@ -270,13 +261,13 @@ export const AboutPage: React.FC = () => {
           <div className="pt-8 border-t border-slate-200 dark:border-border/60 flex flex-wrap items-center justify-between gap-4">
             <Link to="/journey">
               <button className="inline-flex items-center gap-2 h-11 px-6 rounded-xl font-bold text-sm bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-md shadow-emerald-500/25 hover:shadow-lg transition-all">
-                <span>{isEn ? "Explore Career Journey at AITC" : "Xem tiếp: Hành trình sự nghiệp tại AITC"}</span>
+                <span>{t.journey.viewFullBtn}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </Link>
             <Link to="/contact">
               <button className="inline-flex items-center gap-2 h-11 px-6 rounded-xl font-semibold text-sm border border-slate-300 dark:border-emerald-500/40 bg-white dark:bg-emerald-500/10 text-slate-800 dark:text-emerald-300 hover:bg-slate-100 transition-all shadow-sm">
-                <span>{isEn ? "Schedule Interview or Collaboration" : "Liên hệ phỏng vấn & hợp tác"}</span>
+                <span>{t.pages.about.contactBtn}</span>
               </button>
             </Link>
           </div>

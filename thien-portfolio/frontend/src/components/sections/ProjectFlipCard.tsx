@@ -50,7 +50,7 @@ export const ProjectFlipCard: React.FC<ProjectFlipCardProps> = ({
         }`}
       >
         {/* FRONT FACE (MẶT TRƯỚC LÁ BÀI) */}
-        <div className="absolute inset-0 w-full h-full backface-hidden rounded-2xl border border-slate-200 dark:border-border/70 bg-white dark:bg-[#0c141d] flex flex-col shadow-sm hover:shadow-[0_15px_35px_rgba(16,185,129,0.2)] dark:hover:shadow-[0_0_35px_rgba(16,185,129,0.25)] hover:border-emerald-500 dark:hover:border-emerald-400 transition-all duration-300 overflow-hidden">
+        <div className="glow-hover-card absolute inset-0 w-full h-full backface-hidden rounded-2xl border border-slate-200 dark:border-border/70 bg-white dark:bg-[#0c141d] flex flex-col shadow-sm hover:shadow-[0_15px_35px_rgba(16,185,129,0.2)] dark:hover:shadow-[0_0_35px_rgba(16,185,129,0.25)] hover:border-emerald-500 dark:hover:border-emerald-400 transition-all duration-300 overflow-hidden">
           {/* Top Image Preview */}
           <div className="relative w-full h-48 overflow-hidden rounded-t-2xl bg-slate-100 dark:bg-secondary/50 shrink-0">
             {project.image_url ? (
@@ -202,14 +202,16 @@ export const ProjectFlipCard: React.FC<ProjectFlipCardProps> = ({
                 Tech Stack
               </span>
               <div className="flex flex-wrap gap-1.5">
-                {project.tech_stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-950/70 border border-emerald-500/30 text-emerald-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
+                {project.tech_stack
+                  .filter((tech) => !tech.toLowerCase().includes("zustand") && !tech.toLowerCase().includes("tanstack"))
+                  .map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-950/70 border border-emerald-500/30 text-emerald-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
               </div>
             </div>
           </div>

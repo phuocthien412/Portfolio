@@ -25,22 +25,22 @@
   }
 
   .dark {
-    --background: 160 50% 2.5%; /* Deep space with faint emerald forest undertone */
-    --foreground: 160 20% 98%;
-    --card: 160 35% 5%;
-    --card-foreground: 160 20% 98%;
-    --primary: 158 84% 45%; /* Vibrant emerald #10b981 */
-    --primary-foreground: 160 50% 4%;
-    --secondary: 160 30% 8%;
-    --secondary-foreground: 160 20% 98%;
-    --muted: 160 25% 10%;
-    --muted-foreground: 160 15% 65%;
-    --accent: 172 85% 48%; /* Teal/Cyan #14b8a6 */
-    --accent-foreground: 160 50% 4%;
+    --background: 224 71% 3.5%; /* Deep cosmic space abyss #030712 */
+    --foreground: 210 40% 98%;
+    --card: 222 47% 6.5%; /* Cosmic nebulous cards */
+    --card-foreground: 210 40% 98%;
+    --primary: 158 84% 45%; /* Celestial emerald #10b981 */
+    --primary-foreground: 222 47% 4%;
+    --secondary: 222 40% 10%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 35% 12%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 172 85% 48%; /* Cosmic cyan #14b8a6 */
+    --accent-foreground: 222 47% 4%;
     --destructive: 0 62% 30%;
     --destructive-foreground: 210 40% 98%;
-    --border: 160 25% 15%;
-    --input: 160 25% 16%;
+    --border: 222 30% 16%;
+    --input: 222 30% 17%;
     --ring: 158 84% 45%;
   }
 
@@ -53,20 +53,36 @@
     overflow-x: hidden;
     scroll-behavior: smooth;
   }
+
+  /* High-Contrast, Gorgeous Selection Highlight */
+  ::selection {
+    background-color: #047857 !important; /* Deep emerald highlight */
+    color: #ffffff !important;            /* Crisp white text */
+  }
+
+  ::-moz-selection {
+    background-color: #047857 !important;
+    color: #ffffff !important;
+  }
+
+  .dark ::selection {
+    background-color: #10b981 !important; /* Bright emerald highlight */
+    color: #022c22 !important;            /* Deep dark text for maximum readability */
+  }
+
+  .dark ::-moz-selection {
+    background-color: #10b981 !important;
+    color: #022c22 !important;
+  }
 }
 
-/* Global Smooth Theme Transition Effect */
-html.theme-transition,
-html.theme-transition *,
-html.theme-transition *::before,
-html.theme-transition *::after {
-  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              fill 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  transition-delay: 0s !important;
+/* Scoped Theme Transition - eliminates severe wildcard '*' reflow/repaint lag */
+html.theme-transition body,
+html.theme-transition nav,
+html.theme-transition main,
+html.theme-transition footer,
+html.theme-transition section {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease !important;
 }
 
 @layer utilities {
@@ -270,6 +286,303 @@ html.theme-transition *::after {
 
 .animate-spin-slow {
   animation: spin-slow 8s linear infinite;
+}
+
+/* Theme Scene Transition Animations */
+@keyframes themeSunrise {
+  0% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.65);
+  }
+}
+
+@keyframes themeNightfall {
+  0% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.65);
+  }
+}
+
+.animate-theme-sunrise {
+  animation: themeSunrise 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-theme-nightfall {
+  animation: themeNightfall 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Browser Native View Transition circular reveal rules */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* =========================================================
+   GALAXY SPACE COSMOS - ATMOSPHERIC AMBIENCE & GLOW
+   ========================================================= */
+
+/* Ambient Cosmic Starfield Background */
+.bg-galaxy-cosmos {
+  background-color: hsl(var(--background));
+  background-image: 
+    radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 100px 150px, #6ee7b7, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 220px 80px, #38bdf8, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 350px 240px, #a78bfa, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 450px 60px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 580px 190px, #34d399, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 600px 600px;
+}
+
+/* Glow Hover Layout Card Utility */
+.glow-hover-card {
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-hover-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(52, 211, 153, 0.6) !important;
+  box-shadow: 
+    0 12px 35px -8px rgba(16, 185, 129, 0.32),
+    0 0 20px 2px rgba(6, 182, 212, 0.22),
+    inset 0 0 15px rgba(16, 185, 129, 0.08) !important;
+}
+
+/* =========================================================
+   SPACE GLOW BUTTON (Adapted from StealthWorm/spotty-horse-48)
+   Cosmic Starfield & Radiant Glowing Auras
+   ========================================================= */
+.btn-space-glow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 9999px;
+  padding: 2px;
+  background: linear-gradient(137deg, #10b981 10%, #06b6d4 45%, #6366f1 75%, #10b981 100%);
+  background-size: 300% 300%;
+  animation: spaceGradientBorder 6s ease infinite;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-space-glow:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 35px rgba(16, 185, 129, 0.6), 0 0 15px rgba(6, 182, 212, 0.4);
+}
+
+.btn-space-glow:active {
+  transform: scale(0.98);
+}
+
+.btn-space-glow-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 9999px;
+  background: #050b14;
+  backdrop-filter: blur(12px);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  z-index: 10;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+.btn-space-glow:hover .btn-space-glow-inner {
+  background: #03080e;
+}
+
+/* Subtle starry dust particles inside button */
+.btn-space-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(1px 1px at 15px 12px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 45px 28px, #34d399, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 80px 10px, #38bdf8, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 120px 22px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 160px 8px, #a78bfa, rgba(0,0,0,0));
+  background-size: 180px 40px;
+  animation: animStar 12s linear infinite;
+  opacity: 0.65;
+}
+
+@keyframes spaceGradientBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes animStar {
+  from { transform: translateX(0); }
+  to { transform: translateX(-180px); }
+}
+
+/* =========================================================
+   MODERN DOCK SQUIRCLE ICONS (From Itskrish01/modern-mouse-31)
+   ========================================================= */
+.squircle-dock-item {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.squircle-dock-item:hover {
+  transform: translateY(-6px) scale(1.15);
+  box-shadow: 0 10px 25px -4px rgba(16, 185, 129, 0.5);
+  z-index: 20;
+}
+
+/* =========================================================
+   COSMIC TWINKLE & SHOOTING METEOR ANIMATIONS
+   ========================================================= */
+@keyframes twinkle {
+  0% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0.35;
+    transform: scale(0.9);
+  }
+}
+
+.cosmic-meteor {
+  position: absolute;
+  top: -100px;
+  width: 160px;
+  height: 2px;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(52, 211, 153, 0.8) 40%, transparent 100%);
+  border-radius: 9999px;
+  filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.9));
+  opacity: 0;
+  transform: rotate(-35deg);
+  pointer-events: none;
+}
+
+.cosmic-meteor-1 {
+  left: 70%;
+  animation: meteorFly 12s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.cosmic-meteor-2 {
+  left: 30%;
+  animation: meteorFly 17s ease-in-out infinite;
+  animation-delay: 8s;
+}
+
+@keyframes meteorFly {
+  0% {
+    top: -50px;
+    transform: translateX(0) translateY(0) rotate(-35deg);
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  7% {
+    top: 60vh;
+    transform: translateX(-450px) translateY(450px) rotate(-35deg);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   COSMIC AVATAR ORBIT & SOLAR CORONA (Alex Pavlov Inspired)
+   ========================================================= */
+@keyframes cosmicOrbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cosmicOrbitSpinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.cosmic-orbit-1 {
+  animation: cosmicOrbitSpin 26s linear infinite;
+}
+
+.group:hover .cosmic-orbit-1 {
+  animation-duration: 8s;
+}
+
+.cosmic-orbit-2 {
+  animation: cosmicOrbitSpinReverse 36s linear infinite;
+}
+
+.group:hover .cosmic-orbit-2 {
+  animation-duration: 11s;
+}
+
+.cosmic-corona-pulse {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.5) 0%, rgba(6, 182, 212, 0.35) 45%, rgba(99, 102, 241, 0.2) 70%, transparent 85%);
+  filter: blur(28px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .cosmic-corona-pulse {
+  filter: blur(38px);
+  opacity: 0.95;
+  transform: scale(1.22);
 }
 
 

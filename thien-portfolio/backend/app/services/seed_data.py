@@ -30,38 +30,28 @@ SKILLS_DATA: List[Dict[str, Any]] = [
     {
         "category_id": "languages",
         "title": "Ngôn Ngữ Lập Trình",
-        "description": "Nền tảng vững chắc với tư duy cấu trúc dữ liệu và giải thuật",
+        "description": "Nền tảng cấu trúc dữ liệu, giải thuật và kiểu dữ liệu hiện đại",
         "skills": [
-            {"name": "Python", "level": "Thành thạo", "icon": "python", "category": "Languages", "featured": True, "description": "FastAPI, Automation, Data Processing, AI Integration"},
-            {"name": "JavaScript", "level": "Thành thạo", "icon": "javascript", "category": "Languages", "featured": True, "description": "ES6+, Async/Await, DOM, Event Loop"},
-            {"name": "TypeScript", "level": "Thành thạo", "icon": "typescript", "category": "Languages", "featured": True, "description": "Type-safety, Generics, Modern Frontend Tooling"},
-            {"name": "C#", "level": "Trung cấp", "icon": "csharp", "category": "Languages", "featured": False, "description": "OOP, .NET Core, Backend Services"},
-            {"name": "Java", "level": "Trung cấp", "icon": "java", "category": "Languages", "featured": False, "description": "Enterprise Architecture, Spring Boot"},
-            {"name": "PHP", "level": "Trung cấp", "icon": "php", "category": "Languages", "featured": False, "description": "Web Platforms, WordPress, REST APIs"}
+            {"name": "JavaScript", "level": "Sơ cấp", "icon": "javascript", "category": "Languages", "featured": False, "description": "ES6+, Async/Await, DOM, Event Loop"},
+            {"name": "TypeScript", "level": "Thành thạo", "icon": "typescript", "category": "Languages", "featured": True, "description": "Strict Typing, Generics, Modern Frontend & Backend Systems"},
+            {"name": "Python", "level": "Trung cấp", "icon": "python", "category": "Languages", "featured": True, "description": "FastAPI, Automation, Data Processing, Backend Scripting"},
+            {"name": "Java", "level": "Sơ cấp", "icon": "java", "category": "Languages", "featured": False, "description": "Core Java, OOP Fundamentals"},
+            {"name": "C#", "level": "Sơ cấp", "icon": "csharp", "category": "Languages", "featured": False, "description": "OOP, .NET Fundamentals"},
+            {"name": "PHP", "level": "Sơ cấp", "icon": "php", "category": "Languages", "featured": False, "description": "Web Development, CMS Integration, REST APIs"}
         ]
     },
     {
-        "category_id": "frontend",
-        "title": "Frontend & UI/UX",
-        "description": "Giao diện hiện đại, mượt mà, tối ưu SEO và trải nghiệm người dùng",
+        "category_id": "framework",
+        "title": "Framework / Library",
+        "description": "Framework & thư viện hiện đại xây dựng ứng dụng web hiệu năng cao",
         "skills": [
-            {"name": "React", "level": "Thành thạo", "icon": "react", "category": "Frontend", "featured": True, "description": "Hooks, Custom Hooks, Performance Optimization"},
-            {"name": "Tailwind CSS", "level": "Thành thạo", "icon": "tailwindcss", "category": "Frontend", "featured": True, "description": "Design Systems, Responsive, Custom Theme Tokens"},
-            {"name": "Zustand & TanStack Query", "level": "Thành thạo", "icon": "react", "category": "Frontend", "featured": True, "description": "Global State, Server Cache & Syncing"},
-            {"name": "shadcn/ui & Radix", "level": "Thành thạo", "icon": "react", "category": "Frontend", "featured": True, "description": "Accessible, Headless UI Components"},
-            {"name": "Bootstrap", "level": "Trung cấp", "icon": "bootstrap", "category": "Frontend", "featured": False, "description": "Rapid Responsive Prototyping"}
-        ]
-    },
-    {
-        "category_id": "backend",
-        "title": "Backend & Kiến Trúc",
-        "description": "Hệ thống server hiệu năng cao, RESTful APIs và Real-time",
-        "skills": [
-            {"name": "FastAPI (Python)", "level": "Thành thạo", "icon": "fastapi", "category": "Backend", "featured": True, "description": "Async I/O, Pydantic v2, High-concurrency APIs"},
-            {"name": "Node.js", "level": "Thành thạo", "icon": "nodejs", "category": "Backend", "featured": True, "description": "Express, Event-driven, Microservices"},
-            {"name": "ASP.NET Core", "level": "Trung cấp", "icon": "dotnetcore", "category": "Backend", "featured": False, "description": "Enterprise Web APIs, Clean Architecture"},
-            {"name": "Spring Boot", "level": "Trung cấp", "icon": "spring", "category": "Backend", "featured": False, "description": "Dependency Injection, Enterprise Solutions"},
-            {"name": "WordPress CMS", "level": "Thành thạo", "icon": "wordpress", "category": "Backend", "featured": False, "description": "Custom Themes, Plugins, SEO & Security"}
+            {"name": "React", "level": "Thành thạo", "icon": "react", "category": "Framework / Library", "featured": True, "description": "Hooks, Custom Hooks, Performance Optimization"},
+            {"name": "FastAPI", "level": "Trung cấp", "icon": "fastapi", "category": "Framework / Library", "featured": True, "description": "Async I/O, Pydantic v2, High-concurrency APIs"},
+            {"name": "Node.js", "level": "Sơ cấp", "icon": "nodejs", "category": "Framework / Library", "featured": False, "description": "Express, Server-side JavaScript"},
+            {"name": ".NET Core", "level": "Sơ cấp", "icon": "dotnetcore", "category": "Framework / Library", "featured": False, "description": "Enterprise Web APIs, Clean Architecture"},
+            {"name": "Spring Boot", "level": "Sơ cấp", "icon": "spring", "category": "Framework / Library", "featured": False, "description": "Dependency Injection, Enterprise Solutions"},
+            {"name": "Tailwind CSS", "level": "Thành thạo", "icon": "tailwindcss", "category": "Framework / Library", "featured": True, "description": "Design Systems, Responsive, Custom Theme Tokens"},
+            {"name": "WordPress", "level": "Trung cấp", "icon": "wordpress", "category": "Framework / Library", "featured": False, "description": "Custom Themes, Plugins, SEO & CMS"}
         ]
     },
     {
@@ -69,19 +59,20 @@ SKILLS_DATA: List[Dict[str, Any]] = [
         "title": "Cơ Sở Dữ Liệu",
         "description": "Mô hình hóa dữ liệu quan hệ và phi quan hệ, tối ưu truy vấn",
         "skills": [
-            {"name": "MongoDB", "level": "Thành thạo", "icon": "mongodb", "category": "Database", "featured": True, "description": "Document Store, Aggregation Pipeline, Indexing"},
-            {"name": "MySQL", "level": "Thành thạo", "icon": "mysql", "category": "Database", "featured": True, "description": "Schema Design, Relational Queries, ACID"}
+            {"name": "MongoDB", "level": "Thành thạo", "icon": "mongodb", "category": "Cơ Sở Dữ Liệu", "featured": True, "description": "Document Store, Aggregation Pipeline, Indexing"},
+            {"name": "MySQL", "level": "Trung cấp", "icon": "mysql", "category": "Cơ Sở Dữ Liệu", "featured": True, "description": "Schema Design, Relational Queries, ACID"},
+            {"name": "Redis", "level": "Sơ cấp", "icon": "redis", "category": "Cơ Sở Dữ Liệu", "featured": False, "description": "In-memory Caching, Key-Value Store"}
         ]
     },
     {
         "category_id": "devops_tools",
-        "title": "DevOps, Công Cụ & AI",
-        "description": "Tự động hóa, containerization và giải pháp trí tuệ nhân tạo",
+        "title": "Công Cụ & Khác",
+        "description": "Quản lý phiên bản, kiểm thử API, containerization và thiết kế",
         "skills": [
-            {"name": "Docker", "level": "Thành thạo", "icon": "docker", "category": "Tools", "featured": True, "description": "Containerization, Multi-stage Builds, Compose"},
-            {"name": "Postman", "level": "Thành thạo", "icon": "postman", "category": "Tools", "featured": False, "description": "API Testing, Automated Test Suites, Mock Servers"},
-            {"name": "Figma", "level": "Trung cấp", "icon": "figma", "category": "Tools", "featured": False, "description": "UI/UX Prototyping, Wireframing, Design System Hand-off"},
-            {"name": "AI & Multi-Agent", "level": "Thành thạo", "icon": "python", "category": "AI", "featured": True, "description": "Prompt Engineering, LLM Integration, Multi-Agent Workflows"}
+            {"name": "Docker", "level": "Sơ cấp", "icon": "docker", "category": "Công Cụ & Khác", "featured": False, "description": "Containerization, Multi-stage Builds, Docker Compose"},
+            {"name": "Git", "level": "Thành thạo", "icon": "git", "category": "Công Cụ & Khác", "featured": True, "description": "Version Control, Git Flow, Collaborative Workflows"},
+            {"name": "Postman", "level": "Sơ cấp", "icon": "postman", "category": "Công Cụ & Khác", "featured": False, "description": "API Testing, Automated Test Suites, Mock Servers"},
+            {"name": "Figma", "level": "Sơ cấp", "icon": "figma", "category": "Công Cụ & Khác", "featured": False, "description": "UI/UX Prototyping, Wireframing, Design System Reference"}
         ]
     }
 ]
@@ -104,8 +95,8 @@ EXPERIENCES_DATA: List[Dict[str, Any]] = [
         "link": "https://aitc-jsc.com"
     },
     {
-        "id": "education-hutech",
-        "company_or_institution": "University of Technology Ho Chi Minh City",
+        "id": "education-degree",
+        "company_or_institution": "Đại học Công nghệ Thành phố Hồ Chí Minh",
         "role_or_degree": "Cử nhân Kỹ thuật Phần mềm (Software Engineering)",
         "period": "2021 – 2025",
         "location": "TP. Hồ Chí Minh",
@@ -113,10 +104,10 @@ EXPERIENCES_DATA: List[Dict[str, Any]] = [
         "summary": "Tốt nghiệp chuyên ngành Kỹ thuật Phần mềm với nền tảng vững vàng về thuật toán, kiến trúc phần mềm hướng đối tượng (OOP), mạng máy tính và phát triển hệ thống phân tán.",
         "highlights": [
             "Nắm vững các phương pháp luận phát triển phần mềm chuẩn: Agile, Scrum, CI/CD và Clean Architecture.",
-            "Hoàn thành các đồ án chuyên sâu về ứng dụng web phân tán, cơ sở dữ liệu quy mô lớn và tích hợp trí tuệ nhân tạo.",
+            "Hoàn thành các đồ án chuyên sâu về ứng dụng web phân tán, cơ sở dữ liệu quy mô lớn và tối ưu hiệu năng.",
             "Chủ động nghiên cứu và thực hành liên tục với các công nghệ backend và frontend thế hệ mới."
         ],
-        "tech_stack": ["Software Architecture", "Data Structures & Algorithms", "C#", "Java", "Python", "Web Engineering"],
+        "tech_stack": ["Software Architecture", "Data Structures & Algorithms", "Java", "C#", "JavaScript", "HTML", "PHP", "Web Engineering"],
         "link": None
     }
 ]

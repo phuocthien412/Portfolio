@@ -137,14 +137,16 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
             {isEn ? "Full Technology Stack:" : "Công nghệ & Thư viện sử dụng:"}
           </h4>
           <div className="flex flex-wrap gap-2">
-            {project.tech_stack.map((tech) => (
-              <span
-                key={tech}
-                className="text-xs font-mono px-3 py-1 rounded-lg bg-slate-100 dark:bg-secondary text-slate-700 dark:text-secondary-foreground border border-slate-200 dark:border-border/40 font-medium"
-              >
-                {tech}
-              </span>
-            ))}
+            {project.tech_stack
+              .filter((tech) => !tech.toLowerCase().includes("zustand") && !tech.toLowerCase().includes("tanstack"))
+              .map((tech) => (
+                <span
+                  key={tech}
+                  className="text-xs font-mono px-3 py-1 rounded-lg bg-slate-100 dark:bg-secondary text-slate-700 dark:text-secondary-foreground border border-slate-200 dark:border-border/40 font-medium"
+                >
+                  {tech}
+                </span>
+              ))}
           </div>
         </div>
 

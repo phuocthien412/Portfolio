@@ -1,6 +1,7 @@
 import React from "react";
-import { GraduationCap, Award, ShieldCheck, Cpu, Code, Layers, Zap, CheckCircle2 } from "lucide-react";
+import { GraduationCap, Award, ShieldCheck, Code, Layers, Zap, CheckCircle2 } from "lucide-react";
 import { Badge } from "../ui/Badge";
+import { useT } from "../../stores/usePortfolioStore";
 import type { ProfileData } from "../../types";
 
 interface AboutSectionProps {
@@ -8,12 +9,13 @@ interface AboutSectionProps {
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
+  const t = useT();
   const avatarUrl = profile?.avatar_url || "/avatar-thien.jpg";
 
   const stats = [
     {
       label: "Kinh nghiệm thực chiến",
-      value: profile?.stats?.years_experience || "2+ Năm",
+      value: profile?.stats?.years_experience || "1+ Năm",
       desc: "Nghiên cứu và phát triển phần mềm doanh nghiệp",
       icon: Award,
     },
@@ -26,7 +28,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
     {
       label: "Ngôn ngữ lập trình",
       value: profile?.stats?.core_languages || "6+ Ngôn ngữ",
-      desc: "Python, JavaScript, TypeScript, C#, Java, PHP",
+      desc: "TypeScript, Python, JavaScript, C#, Java, PHP",
       icon: Code,
     },
     {
@@ -39,11 +41,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
 
   const pillars = [
     {
-      icon: Cpu,
-      title: "Tích hợp AI & Multi-Agent",
-      description: "Ứng dụng các mô hình LLM và kiến trúc đa tác nhân nhằm tự động hóa quy trình, trích xuất dữ liệu thông minh và phân tích log thời gian thực.",
-    },
-    {
       icon: Layers,
       title: "Kiến trúc hệ thống chuẩn mực",
       description: "Phân tách rõ ràng giữa Routes, Services, Database Models; kết hợp state management hiện đại (Zustand, TanStack Query) cho frontend mượt mà.",
@@ -51,7 +48,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
     {
       icon: Zap,
       title: "Hiệu năng & Tối ưu hóa",
-      description: "Tận dụng Async I/O (FastAPI, Motor), lập chỉ mục MongoDB thông minh, WebSockets giảm thiểu độ trễ xuống dưới 150ms.",
+      description: "Tận dụng Async I/O (FastAPI, Motor), lập chỉ mục MongoDB thông minh, giảm thiểu độ trễ phản hồi hệ thống.",
+    },
+    {
+      icon: Code,
+      title: "Clean Code & Type-Safety",
+      description: "Chuẩn hóa mã nguồn với TypeScript, Pydantic và strict typing, hạn chế tối đa lỗi runtime và tăng tốc bảo trì.",
     },
     {
       icon: ShieldCheck,
@@ -65,14 +67,14 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <div className="space-y-3 mb-16 text-center max-w-3xl mx-auto">
-          <Badge variant="cyan" className="mx-auto">
-            Về Bản Thân & Tầm Nhìn
+          <Badge variant="emerald" className="mx-auto">
+            {t.about.sectionBadge}
           </Badge>
           <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-foreground">
-            Kỹ Sư Phần Mềm Hướng Tới <span className="gradient-text">Sự Hoàn Thiện</span>
+            {t.pages.about.title} <span className="gradient-text">{t.pages.about.highlight}</span>
           </h2>
           <p className="text-base text-muted-foreground leading-relaxed">
-            Hành trình chuyển hóa những bài toán kỹ thuật phức tạp thành các hệ thống phần mềm tinh gọn, ổn định và có khả năng mở rộng cao.
+            {t.pages.about.subtitle}
           </p>
         </div>
 
@@ -82,7 +84,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
           <div className="lg:col-span-7 rounded-3xl border border-border/80 bg-card/60 backdrop-blur-md p-8 flex flex-col justify-between space-y-6">
             {/* Author Profile Header */}
             <div className="flex items-center gap-4 pb-5 border-b border-border/60">
-              <div className="relative w-16 h-16 rounded-2xl overflow-hidden border-2 border-cyan-500/40 shadow-lg shadow-cyan-500/10 shrink-0">
+              <div className="relative w-16 h-16 rounded-2xl overflow-hidden border-2 border-emerald-500/40 shadow-lg shadow-emerald-500/10 shrink-0">
                 <img
                   src={avatarUrl}
                   alt="Ngô Minh Thiên"
@@ -94,55 +96,52 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
                   <h4 className="font-display font-bold text-lg text-foreground">
                     Ngô Minh Thiên
                   </h4>
-                  <span className="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
                     <CheckCircle2 className="w-3 h-3" />
-                    Verified
+                    {t.pages.common.verified}
                   </span>
                 </div>
-                <p className="text-xs font-mono text-cyan-400">
+                <p className="text-xs font-mono text-emerald-700 dark:text-cyan-400 font-semibold">
                   Full-Stack Software Engineer • AITC (2025 - 2026)
                 </p>
               </div>
             </div>
 
             <div className="space-y-4">
-              <div className="flex items-center gap-2 text-cyan-400 font-mono text-xs uppercase tracking-wider">
-                <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                Mục tiêu sự nghiệp (Career Objective)
+              <div className="flex items-center gap-2 text-emerald-700 dark:text-cyan-400 font-mono text-xs uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                {t.pages.about.storyTitle}
               </div>
               <h3 className="font-display font-bold text-2xl text-foreground">
-                Tạo dựng giá trị từ kỹ thuật xuất sắc & tư duy tự động hóa
+                {t.pages.about.storyP1}
               </h3>
               <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                Là một Full-Stack developer có khả năng làm chủ cả frontend tương tác cao lẫn backend hiệu năng lớn, 
-                tôi luôn tìm kiếm cách thức tối ưu hóa công việc thông qua việc tích hợp trí tuệ nhân tạo (AI) và kiến trúc Multi-Agent. 
-                Mục tiêu dài hạn của tôi là đóng góp và thúc đẩy tiêu chuẩn kỹ thuật xuất sắc trong các dự án phần mềm quy mô lớn của doanh nghiệp.
+                {t.pages.about.storyP2}
               </p>
               <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                Với nền tảng đào tạo chính quy về Kỹ thuật Phần mềm và kinh nghiệm làm việc thực tế tại trung tâm công nghệ thông tin AITC, 
-                tôi tự tin vận hành các hệ thống từ cơ sở dữ liệu MongoDB/MySQL, API FastAPI/Node.js cho đến giao diện React/Tailwind mượt mà.
+                {t.about.bio1}
               </p>
             </div>
 
             {/* Education Highlight */}
             <div className="pt-4 border-t border-border/60 flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 shrink-0">
+              <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-cyan-400 shrink-0">
                 <GraduationCap className="w-6 h-6" />
               </div>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <h4 className="font-semibold text-foreground text-sm sm:text-base">
-                    University of Technology Ho Chi Minh City
+                    {t.pages.about.institution}
                   </h4>
-                  <span className="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">
-                    2021 – 2025
+                  <span className="text-xs font-mono text-emerald-700 dark:text-cyan-400 bg-emerald-500/10 px-2 py-0.5 rounded">
+                    {t.pages.about.eduPeriod}
                   </span>
                 </div>
                 <p className="text-xs sm:text-sm text-muted-foreground">
-                  Chuyên ngành: <strong>Kỹ thuật Phần mềm (Software Engineering)</strong>
+                  {t.pages.about.degree}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Trọng tâm: Cấu trúc dữ liệu & giải thuật, kiến trúc phần mềm, hệ thống hướng đối tượng OOP và bảo mật ứng dụng web.
+                  {t.pages.about.eduDesc}
                 </p>
               </div>
             </div>
@@ -155,15 +154,15 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
               return (
                 <div
                   key={idx}
-                  className="rounded-2xl border border-border/70 bg-card/60 backdrop-blur-md p-6 flex flex-col justify-between hover:border-cyan-500/50 hover:bg-card/80 transition-all duration-300 group"
+                  className="rounded-2xl border border-border/70 bg-card/60 backdrop-blur-md p-6 flex flex-col justify-between hover:border-emerald-500/50 hover:bg-card/80 transition-all duration-300 group shadow-sm"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 group-hover:scale-110 transition-transform">
+                    <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-cyan-400 group-hover:scale-110 transition-transform">
                       <Icon className="w-5 h-5" />
                     </div>
                   </div>
                   <div className="mt-6 space-y-1">
-                    <span className="font-display font-extrabold text-2xl sm:text-3xl text-foreground group-hover:text-cyan-400 transition-colors">
+                    <span className="font-display font-extrabold text-2xl sm:text-3xl text-foreground group-hover:text-emerald-600 dark:group-hover:text-cyan-400 transition-colors">
                       {stat.value}
                     </span>
                     <h4 className="font-medium text-xs sm:text-sm text-foreground/90">
@@ -186,10 +185,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
             return (
               <div
                 key={idx}
-                className="rounded-2xl border border-border/60 bg-muted/20 backdrop-blur-sm p-6 space-y-3 hover:border-border transition-all"
+                className="rounded-2xl border border-border/60 bg-muted/20 backdrop-blur-sm p-6 space-y-3 hover:border-emerald-500/40 transition-all shadow-sm"
               >
-                <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold">
-                  <Icon className="w-5 h-5 text-cyan-400" />
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
+                  <Icon className="w-5 h-5" />
                 </div>
                 <h4 className="font-display font-bold text-base text-foreground">
                   {pillar.title}

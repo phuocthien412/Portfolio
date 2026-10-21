@@ -1,9 +1,34 @@
 import React, { useState } from "react";
-import { Cpu, Terminal, Database, Wrench, Sparkles, Layers, CheckCircle2 } from "lucide-react";
+import { Terminal, Database, Wrench, Sparkles, Layers, CheckCircle2 } from "lucide-react";
 import { Badge } from "../ui/Badge";
-import { usePortfolioStore } from "../../stores/usePortfolioStore";
+import { useT, usePortfolioStore } from "../../stores/usePortfolioStore";
 import { ScrollReveal } from "../ui/ScrollReveal";
 import type { SkillCategory, SkillItem } from "../../types";
+
+const SKILL_ICONS: Record<string, string> = {
+  JavaScript: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+  TypeScript: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+  Python: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+  Java: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+  "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg",
+  PHP: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
+  React: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+  FastAPI: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+  "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+  ".NET Core": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg",
+  "ASP.NET Core": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg",
+  "Spring Boot": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg",
+  "Tailwind CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+  WordPress: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-plain.svg",
+  "React Native": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+  MongoDB: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
+  MySQL: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+  Redis: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg",
+  Docker: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+  Git: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
+  Postman: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg",
+  Figma: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg",
+};
 
 interface SkillsMatrixProps {
   skillsCategories?: SkillCategory[];
@@ -13,14 +38,14 @@ export const SkillsMatrix: React.FC<SkillsMatrixProps> = ({ skillsCategories }) 
   const [activeTab, setActiveTab] = useState<string>("all");
   const language = usePortfolioStore((s) => s.language);
   const isEn = language === "en";
+  const t = useT();
 
   const categories = [
     { id: "all", label: isEn ? "All Skills" : "Tất cả kỹ năng", icon: Sparkles },
-    { id: "languages", label: isEn ? "Languages" : "Ngôn ngữ", icon: Terminal },
-    { id: "frontend", label: isEn ? "Frontend & UI" : "Frontend & UI", icon: Layers },
-    { id: "backend", label: isEn ? "Backend & API" : "Backend & API", icon: Cpu },
-    { id: "database", label: isEn ? "Databases" : "Cơ sở dữ liệu", icon: Database },
-    { id: "devops_tools", label: isEn ? "DevOps & AI" : "DevOps & AI", icon: Wrench },
+    { id: "languages", label: t.skills.langTitle, icon: Terminal },
+    { id: "framework", label: t.skills.frameworkTitle, icon: Layers },
+    { id: "database", label: t.skills.dbTitle, icon: Database },
+    { id: "devops_tools", label: t.skills.toolsTitle, icon: Wrench },
   ];
 
   // Flatten or filter
@@ -41,16 +66,24 @@ export const SkillsMatrix: React.FC<SkillsMatrixProps> = ({ skillsCategories }) 
   const getLevelBadge = (level: string) => {
     if (level === "Thành thạo" || level === "Proficient") {
       return (
-        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/30">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-          {isEn ? "Proficient" : "Thành thạo"}
+        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/15 dark:text-emerald-300 dark:border-emerald-500/40 whitespace-nowrap shrink-0 select-none">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+          {t.skills.proficient}
+        </span>
+      );
+    }
+    if (level === "Trung cấp" || level === "Intermediate") {
+      return (
+        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-blue-50 text-blue-700 border border-blue-200 dark:bg-cyan-500/15 dark:text-cyan-300 dark:border-cyan-500/40 whitespace-nowrap shrink-0 select-none">
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+          {t.skills.intermediate}
         </span>
       );
     }
     return (
-      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-blue-50 text-blue-700 border border-blue-200 dark:bg-cyan-500/10 dark:text-cyan-400 dark:border-cyan-500/30">
-        <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-        {isEn ? "Intermediate" : "Trung cấp"}
+      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 text-slate-700 border border-slate-200 dark:bg-secondary dark:text-muted-foreground dark:border-border/50 whitespace-nowrap shrink-0 select-none">
+        <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0" />
+        {t.skills.beginner}
       </span>
     );
   };
@@ -63,26 +96,28 @@ export const SkillsMatrix: React.FC<SkillsMatrixProps> = ({ skillsCategories }) 
         <ScrollReveal animation="fade-up">
           <div className="space-y-3 mb-12 text-center max-w-3xl mx-auto">
             <Badge variant="emerald" className="mx-auto">
-              {isEn ? "Technology Stack" : "Stack Công Nghệ"}
+              {t.skills.sectionBadge}
             </Badge>
             <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-foreground">
-              {isEn ? "Comprehensive " : "Ma Trận Kỹ Năng "}<span className="gradient-text">{isEn ? "Skill Matrix" : "Chuyên Sâu"}</span>
+              {t.pages.skills.title} <span className="gradient-text">{t.pages.skills.highlight}</span>
             </h2>
             <p className="text-base text-slate-600 dark:text-muted-foreground leading-relaxed">
-              {isEn
-                ? "Technology stack mastered, hardened, and actively deployed across enterprise systems."
-                : "Hệ thống công nghệ được tôi vận hành, làm chủ và liên tục nâng cấp trong các dự án thực tế."}
+              {t.pages.skills.subtitle}
             </p>
 
             {/* Level Legend */}
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                {isEn ? "Proficient (Advanced / Production)" : "Thành thạo (Advanced / Production)"}
+                {t.skills.proficient} (Advanced / Production)
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 dark:bg-cyan-500/10 dark:text-cyan-400">
                 <span className="w-2 h-2 rounded-full bg-blue-500" />
-                {isEn ? "Intermediate (Applied / Competent)" : "Trung cấp (Proficient / Applied)"}
+                {t.skills.intermediate} (Competent / Applied)
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 dark:bg-secondary dark:text-muted-foreground">
+                <span className="w-2 h-2 rounded-full bg-slate-400" />
+                {t.skills.beginner} (Foundational)
               </span>
             </div>
           </div>
@@ -113,50 +148,66 @@ export const SkillsMatrix: React.FC<SkillsMatrixProps> = ({ skillsCategories }) 
         </ScrollReveal>
 
         {/* Skills Grid with Staggered ScrollReveal */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {filteredSkills.map((skill, idx) => (
-            <ScrollReveal key={`${skill.name}-${idx}`} animation="fade-up" delay={idx * 60}>
-              <div
-                className="rounded-2xl border border-slate-200 dark:border-border/70 bg-white dark:bg-card/60 backdrop-blur-md p-5 flex flex-col justify-between hover:border-emerald-500/50 hover:shadow-md transition-all duration-300 group hover:-translate-y-1 shadow-sm h-full"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-muted/60 border border-slate-200 dark:border-border/50 flex items-center justify-center group-hover:scale-105 transition-transform">
-                        <span className="font-mono font-bold text-xs text-emerald-700 dark:text-cyan-400">
-                          {skill.name.slice(0, 2).toUpperCase()}
-                        </span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {filteredSkills.map((skill, idx) => {
+            const iconUrl = SKILL_ICONS[skill.name] || (skill.icon ? `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.icon}/${skill.icon}-original.svg` : null);
+            return (
+              <ScrollReveal key={`${skill.name}-${idx}`} animation="fade-up" delay={idx * 30}>
+                <div
+                  className="glow-hover-card rounded-2xl border border-slate-200 dark:border-border/70 bg-white dark:bg-card/75 backdrop-blur-md p-5 flex flex-col justify-between shadow-sm h-full"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="w-11 h-11 rounded-xl bg-slate-100 dark:bg-muted/60 border border-slate-200 dark:border-border/50 flex items-center justify-center p-2.5 shrink-0 group-hover:scale-110 group-hover:border-emerald-500/40 transition-all shadow-sm">
+                          {iconUrl ? (
+                            <img
+                              src={iconUrl}
+                              alt={skill.name}
+                              className="w-6 h-6 object-contain"
+                              onError={(e) => {
+                                (e.target as HTMLElement).style.display = "none";
+                              }}
+                            />
+                          ) : (
+                            <span className="font-mono font-bold text-xs text-emerald-700 dark:text-cyan-400">
+                              {skill.name.slice(0, 2).toUpperCase()}
+                            </span>
+                          )}
+                        </div>
+                        <div className="min-w-0">
+                          <h4 className="font-bold text-base text-slate-900 dark:text-foreground group-hover:text-emerald-700 dark:group-hover:text-cyan-400 transition-colors whitespace-nowrap">
+                            {skill.name}
+                          </h4>
+                          <span className="text-[10px] font-mono text-slate-500 dark:text-muted-foreground uppercase block">
+                            {skill.category}
+                          </span>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-semibold text-sm sm:text-base text-slate-900 dark:text-foreground group-hover:text-emerald-700 dark:group-hover:text-cyan-400 transition-colors">
-                          {skill.name}
-                        </h4>
-                        <span className="text-[10px] font-mono text-slate-500 dark:text-muted-foreground uppercase">
-                          {skill.category}
-                        </span>
+                      <div className="shrink-0">
+                        {getLevelBadge(skill.level)}
                       </div>
                     </div>
-                    {getLevelBadge(skill.level)}
+
+                    {skill.description && (
+                      <p className="text-xs text-slate-600 dark:text-muted-foreground leading-relaxed line-clamp-3">
+                        {skill.description}
+                      </p>
+                    )}
                   </div>
 
-                  {skill.description && (
-                    <p className="text-xs text-slate-600 dark:text-muted-foreground leading-relaxed">
-                      {skill.description}
-                    </p>
-                  )}
+                  {/* Bottom tag indicator */}
+                  <div className="pt-3 mt-3 border-t border-slate-200 dark:border-border/40 flex items-center justify-between text-[10px] font-mono text-slate-500 dark:text-muted-foreground">
+                    <span className="flex items-center gap-1 text-emerald-700 dark:text-cyan-400/80 font-medium whitespace-nowrap shrink-0">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                      {t.pages.common.verified}
+                    </span>
+                    <span className="truncate ml-2 text-right">{skill.category_title || skill.category}</span>
+                  </div>
                 </div>
-
-                {/* Bottom tag indicator */}
-                <div className="pt-3 mt-3 border-t border-slate-200 dark:border-border/40 flex items-center justify-between text-[10px] font-mono text-slate-500 dark:text-muted-foreground">
-                  <span className="flex items-center gap-1 text-emerald-700 dark:text-cyan-400/80 font-medium">
-                    <CheckCircle2 className="w-3 h-3" />
-                    Verified
-                  </span>
-                  <span>{skill.category_title || skill.category}</span>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
       </div>
     </section>

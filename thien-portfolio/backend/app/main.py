@@ -2,6 +2,7 @@ import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from app.core.config import settings
 from app.core.database import connect_to_mongo, close_mongo_connection, db_instance
 from app.routes import profile, skills, journey, projects, contact
@@ -29,6 +30,9 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan
 )
+
+# Compression Middleware for high-traffic throughput
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 # CORS Configuration
 app.add_middleware(

@@ -11,36 +11,36 @@ interface SkillPill {
 }
 
 const LANGUAGES: SkillPill[] = [
-  { name: "JavaScript", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
+  { name: "JavaScript", level: "Sơ cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
   { name: "TypeScript", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" },
-  { name: "Python", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
-  { name: "Java", level: "Trung cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" },
-  { name: "C#", level: "Trung cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" },
-  { name: "PHP", level: "Trung cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" },
+  { name: "Python", level: "Trung cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
+  { name: "Java", level: "Sơ cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" },
+  { name: "C#", level: "Sơ cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" },
+  { name: "PHP", level: "Sơ cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" },
 ];
 
 const FRAMEWORKS: SkillPill[] = [
   { name: "React", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
-  { name: "FastAPI", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" },
-  { name: "Node.js", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" },
-  { name: ".NET Core", level: "Trung cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg" },
-  { name: "Spring Boot", level: "Trung cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" },
+  { name: "React Native", level: "Trung cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
+  { name: "FastAPI", level: "Trung cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" },
+  { name: "Node.js", level: "Sơ cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" },
+  { name: ".NET Core", level: "Sơ cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg" },
+  { name: "Spring Boot", level: "Sơ cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" },
   { name: "Tailwind CSS", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
-  { name: "WordPress", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-plain.svg" },
+  { name: "WordPress", level: "Trung cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-plain.svg" },
 ];
 
 const DATABASES: SkillPill[] = [
   { name: "MongoDB", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" },
-  { name: "MySQL", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
-  { name: "Redis", level: "Trung cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" },
+  { name: "MySQL", level: "Trung cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
+  { name: "Redis", level: "Sơ cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" },
 ];
 
 const TOOLS: SkillPill[] = [
-  { name: "Docker", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" },
+  { name: "Docker", level: "Sơ cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" },
   { name: "Git", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
-  { name: "AI Multi-Agent", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
-  { name: "Postman", level: "Thành thạo", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" },
-  { name: "Figma", level: "Trung cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" },
+  { name: "Postman", level: "Sơ cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" },
+  { name: "Figma", level: "Sơ cấp", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" },
 ];
 
 export const HomeSkillsGrid: React.FC = () => {
@@ -78,20 +78,22 @@ export const HomeSkillsGrid: React.FC = () => {
         {items.map((skill) => (
           <div
             key={skill.name}
-            className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-slate-200/90 dark:border-border/60 bg-white/80 dark:bg-card/50 shadow-sm hover:bg-white dark:hover:bg-card hover:shadow-md hover:border-emerald-500/50 dark:hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all duration-200 group cursor-default"
+            className="glow-hover-card flex items-center gap-2.5 px-3.5 py-2 rounded-xl border border-slate-200/90 dark:border-border/60 bg-white/80 dark:bg-card/50 shadow-sm hover:bg-white dark:hover:bg-card hover:shadow-md hover:border-emerald-500/50 dark:hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all duration-200 group cursor-default"
           >
             <img
               src={skill.icon}
               alt={skill.name}
-              className="w-5 h-5 object-contain group-hover:scale-110 transition-transform duration-200"
+              className="w-5 h-5 object-contain shrink-0 group-hover:scale-110 transition-transform duration-200"
               onError={(e) => {
                 (e.target as HTMLElement).style.display = "none";
               }}
             />
-            <span className="text-sm font-semibold text-slate-800 dark:text-foreground/90">
+            <span className="text-sm font-semibold text-slate-800 dark:text-foreground/90 whitespace-nowrap">
               {skill.name}
             </span>
-            {renderLevelBadge(skill.level)}
+            <div className="shrink-0">
+              {renderLevelBadge(skill.level)}
+            </div>
           </div>
         ))}
       </div>

@@ -5,6 +5,8 @@ import { Footer } from "./components/layout/Footer";
 import { MouseSpotlight } from "./components/ui/MouseSpotlight";
 import { ScrollProgressBar } from "./components/ui/ScrollProgressBar";
 import { CvViewerModal } from "./components/ui/CvViewerModal";
+import { ThemeSceneTransition } from "./components/ui/ThemeSceneTransition";
+import { CosmicSpaceAtmosphere } from "./components/ui/CosmicSpaceAtmosphere";
 import { ProjectDetailModal } from "./components/sections/ProjectDetailModal";
 import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
@@ -41,9 +43,9 @@ export const AppContent: React.FC = () => {
     if (typeof document !== "undefined") {
       document.documentElement.setAttribute("lang", language);
       if (language === "en") {
-        document.title = "Ngo Minh Thien - Software Engineer | Full-Stack & AI Developer";
+        document.title = "Ngo Minh Thien - Software Engineer | Full-Stack ";
       } else {
-        document.title = "Ngô Minh Thiên - Software Engineer | Full-Stack & AI Developer";
+        document.title = "Ngô Minh Thiên - Software Engineer | Full-Stack ";
       }
     }
   }, [language]);
@@ -54,10 +56,16 @@ export const AppContent: React.FC = () => {
       {/* Top Reading / Scroll Progress Bar */}
       <ScrollProgressBar />
 
+      {/* Cinematic Scene Transition Overlay when toggling Dark/Light Mode */}
+      <ThemeSceneTransition />
+
       {/* Interactive Cursor Spotlight / Flashlight that illuminates wherever the mouse moves */}
       <MouseSpotlight />
 
-      <div className="relative min-h-screen bg-background text-foreground transition-colors duration-300 flex flex-col justify-between">
+      <div className="relative min-h-screen bg-background dark:bg-galaxy-cosmos text-foreground transition-colors duration-300 flex flex-col justify-between">
+        {/* Cosmic Space Nebula & Twinkling Constellations Atmosphere */}
+        <CosmicSpaceAtmosphere />
+
         {/* Sticky Header Navigation */}
         <Navbar />
 
