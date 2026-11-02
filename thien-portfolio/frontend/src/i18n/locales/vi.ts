@@ -120,7 +120,6 @@ export const vi: TranslationSchema = {
     successMessage: "Tin nhắn đã được gửi thành công đến Ngô Minh Thiên! Tôi sẽ phản hồi trong 24h.",
     errorMessage: "Có lỗi xảy ra khi gửi tin nhắn. Bạn cũng có thể gửi thư trực tiếp đến minhngothien1@gmail.com!",
     requiredWarning: "Vui lòng điền đầy đủ các thông tin bắt buộc.",
-    mongoNote: "Tin nhắn được chuyển tiếp an toàn trực tiếp vào hộp thư minhngothien1@gmail.com.",
     openEmailApp: "Mở ứng dụng Email của bạn",
     emailDirectly: "Gửi Email trực tiếp",
   },

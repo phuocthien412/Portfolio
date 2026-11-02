@@ -118,7 +118,6 @@ export interface TranslationSchema {
     successMessage: string;
     errorMessage: string;
     requiredWarning: string;
-    mongoNote: string;
     openEmailApp: string;
     emailDirectly: string;
   };

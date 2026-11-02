@@ -5,6 +5,7 @@ import { Footer } from "./components/layout/Footer";
 import { MouseSpotlight } from "./components/ui/MouseSpotlight";
 import { ScrollProgressBar } from "./components/ui/ScrollProgressBar";
 import { CvViewerModal } from "./components/ui/CvViewerModal";
+import { ScrollToTopButton } from "./components/ui/ScrollToTopButton";
 import { ThemeSceneTransition } from "./components/ui/ThemeSceneTransition";
 import { CosmicSpaceAtmosphere } from "./components/ui/CosmicSpaceAtmosphere";
 import { ProjectDetailModal } from "./components/sections/ProjectDetailModal";
@@ -94,6 +95,9 @@ export const AppContent: React.FC = () => {
 
         {/* Full-Featured CV Viewer Modal */}
         <CvViewerModal />
+
+        {/* Floating Scroll To Top Button */}
+        <ScrollToTopButton />
       </div>
     </HashRouter>
   );

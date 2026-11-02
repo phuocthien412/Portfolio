@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
-  ArrowUp,
   Mail,
   Phone,
   MapPin,
@@ -21,10 +20,6 @@ import { useT } from "../../stores/usePortfolioStore";
 export const Footer: React.FC = () => {
   const t = useT();
   const location = useLocation();
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   const navLinks = [
     { to: "/", label: t.nav.home, icon: Home, index: "01" },
@@ -165,25 +160,14 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Back to Top */}
+        {/* Bottom Bar: Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400 font-mono">
           <div>
             <span>© {new Date().getFullYear()} {t.footer.copyright}</span>
           </div>
-
-          {/* Elevated Back to Top Button */}
-          <button
-            onClick={scrollToTop}
-            type="button"
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-slate-300 dark:border-white/10 bg-white dark:bg-white/[0.03] hover:bg-slate-50 dark:hover:bg-white/[0.08] text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-300 hover:border-emerald-500/40 shadow-xs hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all group active:scale-95"
-            title={t.footer.backToTop}
-            aria-label={t.footer.backToTop}
-          >
-            <span>{t.footer.backToTop}</span>
-            <div className="w-5 h-5 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center group-hover:bg-emerald-100 dark:group-hover:bg-emerald-500/20 transition-colors">
-              <ArrowUp className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 text-slate-600 dark:text-slate-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-300" />
-            </div>
-          </button>
+          <div className="text-[11px] text-slate-400 dark:text-slate-500">
+            Built with React 19, TypeScript & Tailwind CSS
+          </div>
         </div>
       </div>
     </footer>
