@@ -10,7 +10,7 @@ export const HomeCtaBanner: React.FC = () => {
   const openCvModal = usePortfolioStore((s) => s.openCvModal);
 
   return (
-    <section className="py-20 sm:py-24 relative overflow-hidden bg-slate-50/80 dark:bg-[#030712] border-t border-slate-200/80 dark:border-emerald-500/20 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+    <section className="py-20 sm:py-24 relative overflow-hidden bg-slate-50/80 dark:bg-transparent border-t border-slate-200/80 dark:border-emerald-500/20 text-slate-800 dark:text-slate-100 transition-colors duration-300">
       
       {/* 1. Ambient Background Glows */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-tr from-emerald-500/8 via-cyan-500/5 to-transparent dark:from-cyan-600/15 dark:via-emerald-500/15 rounded-full blur-[140px] pointer-events-none" />

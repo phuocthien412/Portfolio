@@ -44,13 +44,16 @@
     --ring: 158 84% 45%;
   }
 
-  html {
+  html, body {
     font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+    position: relative;
     scroll-behavior: smooth;
   }
 
@@ -409,6 +412,8 @@ html.theme-transition section {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 100%;
   gap: 0.5rem;
   padding: 0.65rem 1.4rem;
   border-radius: 9999px;

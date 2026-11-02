@@ -48,14 +48,14 @@ export const Navbar: React.FC = () => {
           {/* Logo with Rich Interactive Hover Effects */}
           <Link
             to="/"
-            className="flex items-center gap-3 group relative cursor-pointer"
+            className="flex items-center gap-2.5 sm:gap-3 group relative cursor-pointer shrink-0"
             aria-label="Ngô Minh Thiên - Trang chủ"
           >
             {/* Square Rounded NM Logo with 3D Tilt, Neon Glow & Shimmer */}
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-cyan-400 p-[1.5px] transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-[0_0_25px_rgba(16,185,129,0.7)] shadow-md shadow-emerald-500/25 overflow-hidden">
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-cyan-400 p-[1.5px] transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-[0_0_25px_rgba(16,185,129,0.7)] shadow-md shadow-emerald-500/25 overflow-hidden shrink-0">
               {/* Internal Badge */}
               <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center font-display font-black text-emerald-400 group-hover:text-emerald-300 transition-colors relative overflow-hidden">
-                <span className="text-sm tracking-tight font-extrabold select-none">NM</span>
+                <span className="text-xs sm:text-sm tracking-tight font-extrabold select-none">NM</span>
                 {/* Shimmer sweep effect on hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
               </div>
@@ -64,18 +64,18 @@ export const Navbar: React.FC = () => {
             {/* Title & Role with Hover Interaction */}
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
-                <span className="font-display font-bold text-base sm:text-lg tracking-tight text-foreground group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
+                <span className="font-display font-bold text-sm sm:text-base lg:text-lg tracking-tight text-foreground group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors whitespace-nowrap">
                   MINH THIÊN
                 </span>
                 
                 {/* Status Dot with Radar Pulse on Hover */}
-                <div className="relative flex items-center justify-center w-2.5 h-2.5 ml-0.5">
+                <div className="relative flex items-center justify-center w-2 h-2 sm:w-2.5 sm:h-2.5 ml-0.5 shrink-0">
                   <span className="absolute w-full h-full rounded-full bg-emerald-400 opacity-75 group-hover:animate-radar" />
                   <span className="relative w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 shadow-[0_0_8px_#10b981]" title={t.hero.availableBadge} />
                 </div>
               </div>
 
-              <span className="text-[10px] font-mono text-muted-foreground -mt-0.5 tracking-wider uppercase group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+              <span className="hidden sm:inline-block text-[10px] font-mono text-muted-foreground -mt-0.5 tracking-wider uppercase group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors whitespace-nowrap">
                 SOFTWARE ENGINEER
               </span>
             </div>
@@ -105,9 +105,11 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Right Action Buttons */}
-          <div className="flex items-center gap-2">
-            {/* Language Switcher */}
-            <LanguageToggle />
+          <div className="flex items-center gap-2 shrink-0">
+            {/* Language Switcher: Shown on tablet/desktop. On mobile it is positioned prominently inside the drawer */}
+            <div className="hidden sm:block">
+              <LanguageToggle />
+            </div>
 
             {/* Theme Toggle */}
             <ThemeToggle />
@@ -144,7 +146,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer / Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden bg-background/95 backdrop-blur-2xl pt-24 px-6 pb-8 flex flex-col justify-between animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-40 md:hidden bg-background/95 backdrop-blur-2xl pt-24 px-6 pb-8 flex flex-col justify-between animate-in fade-in duration-200 overflow-y-auto">
           <div className="flex flex-col space-y-2">
             <div className="flex items-center justify-between pb-3 mb-2 border-b border-border/60">
               <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">

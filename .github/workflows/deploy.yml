@@ -38,6 +38,8 @@ jobs:
           npm ci
 
       - name: Build Static Site
+        env:
+          VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
         run: |
           cd thien-portfolio/frontend
           npm run build
@@ -53,4 +55,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

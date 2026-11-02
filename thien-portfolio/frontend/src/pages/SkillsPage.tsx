@@ -16,12 +16,7 @@ export const SkillsPage: React.FC = () => {
         {/* Page Header */}
         <ScrollReveal animation="fade-up">
           <div className="space-y-4 max-w-3xl">
-            <div className="flex items-center gap-2 text-xs font-mono text-emerald-700 dark:text-cyan-400 uppercase tracking-widest">
-              <Link to="/" className="hover:underline">{t.pages.common.home}</Link>
-              <span>/</span>
-              <span className="text-slate-900 dark:text-foreground">{t.nav.skills}</span>
-            </div>
-            <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-slate-900 dark:text-foreground tracking-tight">
+            <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-slate-900 dark:text-foreground tracking-tight leading-tight sm:leading-snug lg:leading-[1.2] pb-1">
               {t.pages.skills.title} <span className="gradient-text">{t.pages.skills.highlight}</span>
             </h1>
             <p className="text-base sm:text-lg text-slate-600 dark:text-muted-foreground leading-relaxed">

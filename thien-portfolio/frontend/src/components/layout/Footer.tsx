@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="relative border-t border-slate-200/80 dark:border-emerald-500/20 bg-slate-100/70 dark:bg-[#030712]/95 backdrop-blur-2xl text-slate-700 dark:text-slate-200 overflow-hidden transition-colors duration-300 pt-16 pb-12">
+    <footer className="relative border-t border-slate-200/80 dark:border-emerald-500/20 bg-slate-100/70 dark:bg-card/40 backdrop-blur-2xl text-slate-700 dark:text-slate-200 overflow-hidden transition-colors duration-300 pt-16 pb-12">
       {/* 1. Cosmic Horizon Gradient Beam on Top Edge */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400/80 via-cyan-400/80 to-transparent shadow-[0_0_12px_rgba(16,185,129,0.3)]" />
 
@@ -161,12 +161,9 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar: Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400 font-mono">
+        <div className="pt-8 flex items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400 font-mono">
           <div>
             <span>© {new Date().getFullYear()} {t.footer.copyright}</span>
-          </div>
-          <div className="text-[11px] text-slate-400 dark:text-slate-500">
-            Built with React 19, TypeScript & Tailwind CSS
           </div>
         </div>
       </div>

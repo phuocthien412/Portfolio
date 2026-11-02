@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   ExternalLink,
   Layers,
@@ -18,7 +19,8 @@ import type { ProjectItem } from "../../types";
 interface ProjectFlipCardProps {
   project: ProjectItem;
   index: number;
-  onSelectProject: (p: ProjectItem) => void;
+  onSelectProject?: (p: ProjectItem) => void;
+  detailMode?: "modal" | "page";
 }
 
 const getCategoryIcon = (category: string) => {
@@ -32,6 +34,7 @@ export const ProjectFlipCard: React.FC<ProjectFlipCardProps> = ({
   project,
   index,
   onSelectProject,
+  detailMode = "modal",
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const t = useT();
@@ -100,7 +103,7 @@ export const ProjectFlipCard: React.FC<ProjectFlipCardProps> = ({
 
               {/* Italic Tagline */}
               {project.tagline && (
-                <p className="text-xs sm:text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-2.5 italic line-clamp-1">
+                <p className="text-xs sm:text-sm font-medium text-emerald-700 dark:text-emerald-400 mb-2.5 italic line-clamp-1">
                   {project.tagline.startsWith('"') ? project.tagline : `"${project.tagline}"`}
                 </p>
               )}
@@ -216,40 +219,56 @@ export const ProjectFlipCard: React.FC<ProjectFlipCardProps> = ({
             </div>
           </div>
 
-          {/* Back Action Buttons */}
+          {/* Back Action Buttons: Xem chi tiết + Icon Xem trực tiếp + Icon GitHub */}
           <div className="relative z-10 pt-3 border-t border-slate-200 dark:border-white/10 flex items-center gap-2 mt-auto">
-            {project.demo_url ? (
+            {/* Primary Action Button: Xem chi tiết kiến trúc */}
+            {detailMode === "page" ? (
+              <Link
+                to={`/projects/${project.id}`}
+                onClick={(e) => e.stopPropagation()}
+                className="flex-1 inline-flex items-center justify-center gap-1.5 h-10 px-3 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-500 hover:bg-emerald-600 text-white shadow-md shadow-emerald-500/25 transition-all active:scale-95 cursor-pointer"
+              >
+                <Layers className="w-3.5 h-3.5" />
+                <span>{t.projects.viewDetails}</span>
+              </Link>
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSelectProject?.(project);
+                }}
+                className="flex-1 inline-flex items-center justify-center gap-1.5 h-10 px-3 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-500/20 dark:hover:bg-emerald-500/30 border border-emerald-300 dark:border-emerald-500/50 text-emerald-800 dark:text-emerald-300 hover:text-emerald-900 dark:hover:text-white transition-all active:scale-95 cursor-pointer"
+              >
+                <Layers className="w-3.5 h-3.5" />
+                <span>{t.projects.viewDetails}</span>
+              </button>
+            )}
+
+            {/* Icon Button for Live Demo (Xem trực tiếp) */}
+            {project.demo_url && (
               <a
                 href={project.demo_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="flex-1 inline-flex items-center justify-center gap-1.5 h-10 px-3 rounded-xl text-xs sm:text-sm font-semibold bg-[#10b981] hover:bg-[#059669] text-white shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all active:scale-95"
+                className="inline-flex items-center justify-center h-10 px-3 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-all active:scale-95 shadow-xs cursor-pointer"
+                title={t.projects.liveDemo}
+                aria-label={t.projects.liveDemo}
               >
-                <ExternalLink className="w-3.5 h-3.5" />
-                <span>{t.projects.liveDemo}</span>
+                <ExternalLink className="w-4 h-4" />
               </a>
-            ) : null}
+            )}
 
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onSelectProject(project);
-              }}
-              className="flex-1 inline-flex items-center justify-center gap-1.5 h-10 px-3 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-500/20 dark:hover:bg-emerald-500/30 border border-emerald-300 dark:border-emerald-500/50 text-emerald-800 dark:text-emerald-300 hover:text-emerald-900 dark:hover:text-white transition-all active:scale-95 cursor-pointer"
-            >
-              <Layers className="w-3.5 h-3.5" />
-              <span>{t.projects.viewDetails}</span>
-            </button>
-
+            {/* Icon Button for GitHub Repository */}
             {project.github_url && (
               <a
                 href={project.github_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center justify-center h-10 px-3.5 rounded-xl border border-slate-200 dark:border-white/20 bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-700 hover:text-slate-900 dark:text-white transition-all active:scale-95"
+                className="inline-flex items-center justify-center h-10 px-3 rounded-xl border border-slate-200 dark:border-white/20 bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-700 hover:text-slate-900 dark:text-white transition-all active:scale-95 cursor-pointer"
                 title="GitHub Repository"
+                aria-label="GitHub Repository"
               >
                 <GithubIcon className="w-4 h-4" />
               </a>

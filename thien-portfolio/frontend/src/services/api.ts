@@ -53,7 +53,7 @@ export async function submitContact(data: ContactFormInput): Promise<ContactResp
           access_key: web3formsKey,
           name: data.name,
           email: data.email,
-          subject: data.subject || "Liên hệ mới từ Portfolio Ngô Minh Thiên",
+          subject: data.subject || "Liên hệ mới từ Portfolio",
           message: data.message,
           from_name: `${data.name} (Portfolio)`,
         }),
@@ -63,7 +63,7 @@ export async function submitContact(data: ContactFormInput): Promise<ContactResp
       if (response.ok && result.success) {
         return {
           status: "success",
-          message: "Tin nhắn đã được gửi thành công đến Ngô Minh Thiên! Tôi sẽ phản hồi sớm nhất.",
+          message: "Tin nhắn của bạn đã được gửi thành công! Tôi sẽ phản hồi trong thời gian sớm nhất.",
           message_id: result.data?.id || `msg_${Date.now()}`,
           timestamp: new Date().toISOString(),
         };

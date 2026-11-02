@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, FileText } from "lucide-react";
 import { usePortfolioStore, useT } from "../../stores/usePortfolioStore";
 import { ScrollReveal } from "../ui/ScrollReveal";
-import { SpaceGlowButton } from "../ui/SpaceGlowButton";
+
 import type { ProfileData } from "../../types";
 
 interface HeroSectionProps {
@@ -59,58 +59,61 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               </p>
             </ScrollReveal>
 
-            {/* Action Buttons */}
+            {/* Action Buttons: 1 Main CTA Full-width + 2 Secondary CTAs Side-by-side on Mobile */}
             <ScrollReveal animation="fade-up" delay={400}>
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 pt-2 w-full max-w-md lg:max-w-none mx-auto lg:mx-0">
+                {/* 1. Primary Highlight Button: Xem các dự án */}
                 <Link to="/projects" className="w-full sm:w-auto">
-                  <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl font-bold text-sm bg-gradient-to-r from-emerald-500 to-teal-500 text-white dark:text-slate-950 shadow-[0_4px_20px_rgba(16,185,129,0.35)] dark:shadow-[0_0_30px_rgba(16,185,129,0.55)] hover:shadow-[0_6px_25px_rgba(16,185,129,0.5)] dark:hover:shadow-[0_0_40px_rgba(16,185,129,0.75)] hover:scale-[1.02] active:scale-[0.98] transition-all">
+                  <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl font-bold text-sm bg-gradient-to-r from-emerald-500 to-teal-500 text-white dark:text-slate-950 shadow-[0_4px_20px_rgba(16,185,129,0.35)] dark:shadow-[0_0_30px_rgba(16,185,129,0.55)] hover:shadow-[0_6px_25px_rgba(16,185,129,0.5)] dark:hover:shadow-[0_0_40px_rgba(16,185,129,0.75)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
                     <span>{t.hero.viewProjects}</span>
                     <ArrowRight className="w-4 h-4 ml-0.5" />
                   </button>
                 </Link>
 
-                {/* View CV Space Glow Button */}
-                <SpaceGlowButton
-                  onClick={openCvModal}
-                  className="w-full sm:w-auto"
-                  icon={<FileText className="w-4 h-4 text-emerald-400" />}
-                >
-                  {t.hero.viewCv}
-                </SpaceGlowButton>
+                {/* 2. Secondary Action Row: 2 Cột Đều Nhau Trên Mobile (grid-cols-2), Dàn Ngang Trên Desktop */}
+                <div className="grid grid-cols-2 gap-3 w-full sm:w-auto sm:flex sm:items-center">
+                  {/* Quick CV Viewer */}
+                  <button
+                    onClick={openCvModal}
+                    className="inline-flex items-center justify-center gap-2 h-11 px-4 sm:px-5 rounded-xl font-semibold text-xs sm:text-sm border border-slate-300/80 dark:border-emerald-500/40 bg-white/90 dark:bg-card/80 backdrop-blur-md text-slate-800 dark:text-emerald-300 hover:border-emerald-500 hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-200 transition-all active:scale-95 shadow-xs cursor-pointer"
+                  >
+                    <FileText className="w-4 h-4 text-emerald-500 dark:text-emerald-400 shrink-0" />
+                    <span>{t.hero.viewCv}</span>
+                  </button>
 
-                {/* Direct Contact Space Glow Button */}
-                <SpaceGlowButton
-                  to="/contact"
-                  className="w-full sm:w-auto"
-                  icon={<ArrowRight className="w-4 h-4 text-cyan-400" />}
-                >
-                  {t.hero.contactMe}
-                </SpaceGlowButton>
+                  {/* Direct Contact Button */}
+                  <Link to="/contact" className="w-full sm:w-auto">
+                    <button className="w-full inline-flex items-center justify-center gap-2 h-11 px-4 sm:px-5 rounded-xl font-semibold text-xs sm:text-sm border border-slate-300/80 dark:border-cyan-500/40 bg-white/90 dark:bg-card/80 backdrop-blur-md text-slate-800 dark:text-cyan-300 hover:border-cyan-500 hover:bg-cyan-500/10 hover:text-cyan-600 dark:hover:text-cyan-200 transition-all active:scale-95 shadow-xs cursor-pointer">
+                      <ArrowRight className="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0" />
+                      <span>{t.hero.contactMe}</span>
+                    </button>
+                  </Link>
+                </div>
               </div>
             </ScrollReveal>
           </div>
 
           {/* Right Column: Cosmic Planetary Avatar with Orbit Rings */}
-          <div className="flex-shrink-0 relative group cursor-pointer">
+          <div className="flex-shrink-0 relative group cursor-pointer mx-auto my-2">
             <ScrollReveal animation="scale-up" delay={250}>
               {/* 1. Deep Cosmic Solar Flare & Nebula Corona */}
-              <div className="cosmic-corona-pulse absolute -inset-12 rounded-full pointer-events-none" />
+              <div className="cosmic-corona-pulse absolute -inset-8 sm:-inset-12 rounded-full pointer-events-none" />
               <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500 opacity-70 group-hover:opacity-100 blur-sm transition-opacity duration-500 pointer-events-none" />
 
               {/* 2. Outer Planetary Orbit Ring with Satellite Star */}
-              <div className="cosmic-orbit-1 absolute -inset-8 sm:-inset-10 lg:-inset-12 rounded-full border border-dashed border-emerald-400/25 group-hover:border-emerald-400/60 pointer-events-none transition-colors duration-500">
+              <div className="cosmic-orbit-1 absolute -inset-6 sm:-inset-10 lg:-inset-12 rounded-full border border-dashed border-emerald-400/25 group-hover:border-emerald-400/60 pointer-events-none transition-colors duration-500">
                 <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-cyan-300 shadow-[0_0_14px_#22d3ee] flex items-center justify-center">
                   <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                 </span>
               </div>
 
               {/* 3. Inner Counter-Rotating Orbit Ring */}
-              <div className="cosmic-orbit-2 absolute -inset-4 sm:-inset-5 lg:-inset-6 rounded-full border border-cyan-400/20 group-hover:border-cyan-400/50 pointer-events-none transition-colors duration-500">
+              <div className="cosmic-orbit-2 absolute -inset-3 sm:-inset-5 lg:-inset-6 rounded-full border border-cyan-400/20 group-hover:border-cyan-400/50 pointer-events-none transition-colors duration-500">
                 <span className="absolute bottom-0 right-1/4 translate-x-1/2 translate-y-1/2 w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]" />
               </div>
 
               {/* 4. Circular Avatar Celestial Frame */}
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-[4px] border-emerald-500 dark:border-emerald-400 group-hover:border-cyan-400 shadow-[0_10px_35px_rgba(16,185,129,0.35)] dark:shadow-[0_0_50px_rgba(16,185,129,0.85),inset_0_0_25px_rgba(16,185,129,0.4)] group-hover:dark:shadow-[0_0_65px_rgba(6,182,212,0.9),inset_0_0_30px_rgba(6,182,212,0.5)] bg-slate-100 dark:bg-slate-950 transition-all duration-500">
+              <div className="relative w-56 h-56 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-[4px] border-emerald-500 dark:border-emerald-400 group-hover:border-cyan-400 shadow-[0_10px_35px_rgba(16,185,129,0.35)] dark:shadow-[0_0_50px_rgba(16,185,129,0.85),inset_0_0_25px_rgba(16,185,129,0.4)] group-hover:dark:shadow-[0_0_65px_rgba(6,182,212,0.9),inset_0_0_30px_rgba(6,182,212,0.5)] bg-slate-100 dark:bg-slate-950 transition-all duration-500">
                 <img
                   src={avatarUrl}
                   alt="Ngô Minh Thiên - Software Engineer"

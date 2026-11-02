@@ -14,6 +14,7 @@ import { AboutPage } from "./pages/AboutPage";
 import { JourneyPage } from "./pages/JourneyPage";
 import { SkillsPage } from "./pages/SkillsPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
+import { ProjectDetailPage } from "./pages/ProjectDetailPage";
 import { ContactPage } from "./pages/ContactPage";
 import { usePortfolioStore } from "./stores/usePortfolioStore";
 
@@ -63,7 +64,7 @@ export const AppContent: React.FC = () => {
       {/* Interactive Cursor Spotlight / Flashlight that illuminates wherever the mouse moves */}
       <MouseSpotlight />
 
-      <div className="relative min-h-screen bg-background dark:bg-galaxy-cosmos text-foreground transition-colors duration-300 flex flex-col justify-between">
+      <div className="relative min-h-screen bg-background dark:bg-galaxy-cosmos text-foreground transition-colors duration-300 flex flex-col justify-between overflow-x-hidden w-full max-w-full">
         {/* Cosmic Space Nebula & Twinkling Constellations Atmosphere */}
         <CosmicSpaceAtmosphere />
 
@@ -78,6 +79,7 @@ export const AppContent: React.FC = () => {
             <Route path="/journey" element={<JourneyPage />} />
             <Route path="/skills" element={<SkillsPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/projects/:id" element={<ProjectDetailPage />} />
             <Route path="/contact" element={<ContactPage />} />
             {/* Fallback to Home */}
             <Route path="*" element={<HomePage />} />
