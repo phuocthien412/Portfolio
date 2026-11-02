@@ -4,25 +4,25 @@ node_modules/
 .pnp.js
 
 # Build outputs
-frontend/dist/
-frontend/dist-ssr/
+dist/
+dist-ssr/
+build/
 *.local
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.venv/
-venv/
-env/
-.pytest_cache/
 
 # Environment files
 .env
 .env.local
 .env.*.local
-backend/.env
+!.env.example
+!*.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+env/
+.pytest_cache/
 
 # Logs
 *.log
@@ -32,5 +32,6 @@ yarn-debug.log*
 # Editor & OS files
 .DS_Store
 Thumbs.db
+Desktop.ini
 .vscode/
 .idea/
