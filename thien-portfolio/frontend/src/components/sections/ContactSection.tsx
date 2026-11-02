@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2, MessageSquare, Copy, Check } from "lucide-react";
 import { GithubIcon } from "../ui/Icons";
 import { Badge } from "../ui/Badge";
 import { ModernDockSocials } from "../ui/ModernDockSocials";
-import { useT } from "../../stores/usePortfolioStore";
+import { usePortfolioStore, useT } from "../../stores/usePortfolioStore";
 import { ScrollReveal } from "../ui/ScrollReveal";
 import { useSubmitContact } from "../../hooks/usePortfolioData";
 import type { ContactFormInput } from "../../types";
 
 export const ContactSection: React.FC = () => {
   const t = useT();
+  const language = usePortfolioStore((s) => s.language);
+  const isEn = language === "en";
+  const [copied, setCopied] = useState(false);
   const [formData, setFormData] = useState<ContactFormInput>({
     name: "",
     email: "",
@@ -19,6 +22,14 @@ export const ContactSection: React.FC = () => {
   const [statusMessage, setStatusMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   const submitMutation = useSubmitContact();
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText("minhngothien1@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -104,21 +115,43 @@ export const ContactSection: React.FC = () => {
                     </div>
                   </a>
 
-                  {/* Email */}
-                  <a
-                    href="mailto:minhngothien1@gmail.com"
-                    className="rounded-2xl border border-slate-200 dark:border-border/80 bg-white dark:bg-card/60 backdrop-blur-md p-4 flex items-center gap-4 hover:border-emerald-500/50 hover:bg-slate-50 dark:hover:bg-card/90 transition-all shadow-sm group"
-                  >
-                    <div className="p-3 rounded-xl bg-emerald-50 text-emerald-600 dark:bg-cyan-500/10 dark:text-cyan-400 group-hover:scale-105 transition-transform">
-                      <Mail className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-mono text-slate-500 dark:text-muted-foreground uppercase">{t.contact.emailLabel}</span>
-                      <h4 className="font-semibold text-slate-900 dark:text-foreground text-sm sm:text-base group-hover:text-emerald-700 dark:group-hover:text-cyan-400 transition-colors">
-                        minhngothien1@gmail.com
-                      </h4>
-                    </div>
-                  </a>
+                  {/* Email with Direct Mailto & 1-Click Copy */}
+                  <div className="rounded-2xl border border-slate-200 dark:border-border/80 bg-white dark:bg-card/60 backdrop-blur-md p-4 flex items-center justify-between gap-3 hover:border-emerald-500/50 hover:bg-slate-50 dark:hover:bg-card/90 transition-all shadow-sm group">
+                    <a
+                      href="mailto:minhngothien1@gmail.com?subject=Trao%20đổi%20cơ%20hội%20việc%20làm"
+                      className="flex items-center gap-4 flex-1 min-w-0"
+                      title={t.contact.openEmailApp}
+                    >
+                      <div className="p-3 rounded-xl bg-emerald-50 text-emerald-600 dark:bg-cyan-500/10 dark:text-cyan-400 group-hover:scale-105 transition-transform shrink-0">
+                        <Mail className="w-5 h-5" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <span className="text-xs font-mono text-slate-500 dark:text-muted-foreground uppercase">{t.contact.emailLabel}</span>
+                        <h4 className="font-semibold text-slate-900 dark:text-foreground text-sm sm:text-base group-hover:text-emerald-700 dark:group-hover:text-cyan-400 transition-colors truncate">
+                          minhngothien1@gmail.com
+                        </h4>
+                      </div>
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={handleCopyEmail}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-border bg-slate-50 dark:bg-card text-slate-700 dark:text-slate-300 hover:bg-emerald-50 hover:text-emerald-700 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 transition-all shrink-0 cursor-pointer"
+                      title={isEn ? "Copy email address" : "Sao chép địa chỉ email"}
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                          <span className="text-emerald-600 dark:text-emerald-400 font-bold">{isEn ? "Copied" : "Đã chép"}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>{isEn ? "Copy" : "Sao chép"}</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
 
                   {/* Location */}
                   <div className="rounded-2xl border border-slate-200 dark:border-border/80 bg-white dark:bg-card/60 backdrop-blur-md p-4 flex items-center gap-4 shadow-sm">

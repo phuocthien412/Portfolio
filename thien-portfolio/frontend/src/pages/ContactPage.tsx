@@ -29,8 +29,8 @@ export const ContactPage: React.FC = () => {
       icon: ShieldCheck,
       title: isEn ? "Direct & Confidential" : "Bảo mật & Trực tiếp",
       desc: isEn
-        ? "Form submissions are securely stored in MongoDB and directly handled by Ngo Minh Thien."
-        : "Toàn bộ thông tin gửi qua biểu mẫu được lưu trữ bảo mật trực tiếp trên MongoDB thông qua FastAPI backend.",
+        ? "Messages are securely encrypted and dispatched directly to minhngothien1@gmail.com with guaranteed privacy."
+        : "Thông tin gửi qua biểu mẫu được mã hóa và chuyển tiếp an toàn trực tiếp vào hộp thư minhngothien1@gmail.com.",
     },
   ];
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { MouseSpotlight } from "./components/ui/MouseSpotlight";
@@ -51,7 +51,7 @@ export const AppContent: React.FC = () => {
   }, [language]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
       {/* Top Reading / Scroll Progress Bar */}
       <ScrollProgressBar />
@@ -95,7 +95,7 @@ export const AppContent: React.FC = () => {
         {/* Full-Featured CV Viewer Modal */}
         <CvViewerModal />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

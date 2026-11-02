@@ -12,7 +12,7 @@ export const AboutPage: React.FC = () => {
   const language = usePortfolioStore((s) => s.language);
   const isEn = language === "en";
   const t = useT();
-  const avatarUrl = profile?.avatar_url || "/avatar-thien.jpg";
+  const avatarUrl = profile?.avatar_url || "./avatar-thien.jpg";
 
   const stats = [
     {

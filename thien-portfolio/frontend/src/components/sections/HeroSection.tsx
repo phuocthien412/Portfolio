@@ -14,7 +14,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
   const t = useT();
   const openCvModal = usePortfolioStore((s) => s.openCvModal);
   const name = "Ngô Minh Thiên";
-  const avatarUrl = profile?.avatar_url || "/avatar-thien.jpg";
+  const avatarUrl = profile?.avatar_url || "./avatar-thien.jpg";
 
   return (
     <section className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center pt-24 pb-20 overflow-hidden">
