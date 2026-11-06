@@ -247,7 +247,7 @@ export const ProjectDetailPage: React.FC = () => {
         {/* Section 4: Tech Stack Breakdown */}
         <ScrollReveal animation="fade-up">
           <div className="rounded-3xl border border-slate-200 dark:border-border/70 bg-white/95 dark:bg-card/75 backdrop-blur-xl p-6 sm:p-8 space-y-4 shadow-sm">
-            <h2 className="font-display font-bold text-base sm:text-lg text-slate-900 dark:text-white font-mono uppercase tracking-wider">
+            <h2 className="font-display font-bold text-base sm:text-lg text-slate-900 dark:text-white uppercase tracking-wider">
               {isEn ? "Full Technology Stack" : "Công nghệ & Thư viện sử dụng"}
             </h2>
             <div className="flex flex-wrap gap-2.5">

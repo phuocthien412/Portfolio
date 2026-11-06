@@ -90,7 +90,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
 
           {/* Narrative Description */}
           <div className="space-y-2">
-            <h4 className="font-display font-semibold text-xs font-mono text-emerald-700 dark:text-cyan-400 uppercase tracking-wider">
+            <h4 className="font-semibold text-xs font-mono text-emerald-700 dark:text-cyan-400 uppercase tracking-wider">
               {isEn ? "Project Overview & Engineering Solution" : "Tổng quan dự án & Giải pháp"}
             </h4>
             <p className="text-sm text-slate-600 dark:text-muted-foreground leading-relaxed">
@@ -119,7 +119,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
           {/* Features / Architecture Highlights */}
           {project.features && project.features.length > 0 && (
             <div className="space-y-3">
-              <h4 className="font-display font-semibold text-xs font-mono text-emerald-700 dark:text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
+              <h4 className="font-semibold text-xs font-mono text-emerald-700 dark:text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
                 <Layers className="w-4 h-4" />
                 <span>{isEn ? "Key Architectural Features & Capabilities" : "Tính năng kỹ thuật & Điểm nhấn triển khai"}</span>
               </h4>
@@ -139,7 +139,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
 
           {/* Technology Stack Full Tag List */}
           <div className="space-y-2">
-            <h4 className="font-display font-semibold text-xs font-mono text-slate-500 dark:text-muted-foreground uppercase tracking-wider">
+            <h4 className="font-semibold text-xs font-mono text-slate-500 dark:text-muted-foreground uppercase tracking-wider">
               {isEn ? "Full Technology Stack:" : "Công nghệ & Thư viện sử dụng:"}
             </h4>
             <div className="flex flex-wrap gap-2">
