@@ -120,6 +120,7 @@ export const en: TranslationSchema = {
     successMessage: "Your message has been sent successfully! I will get back to you within 24 hours.",
     errorMessage: "An error occurred while sending. Please try again or reach out through direct channels.",
     requiredWarning: "Please complete all required fields.",
+    cooldownWarning: "You recently sent a message. Please wait {sec}s before sending again.",
     directNote: "",
     openEmailApp: "Open in Your Email Client",
     emailDirectly: "Send Direct Email",

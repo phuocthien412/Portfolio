@@ -23,6 +23,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isCompact = fals
     subject: "",
     message: "",
   });
+  const [honeypot, setHoneypot] = useState("");
   const [statusMessage, setStatusMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   const submitMutation = useSubmitContact();
@@ -43,6 +44,31 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isCompact = fals
     e.preventDefault();
     setStatusMessage(null);
 
+    // 1. Honeypot check: If bot filled the hidden field, silently fake success without sending
+    if (honeypot.trim() !== "") {
+      setStatusMessage({
+        type: "success",
+        text: t.contact.successMessage,
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      return;
+    }
+
+    // 2. Client-side Rate Limiting (60-second anti-flood cooldown)
+    const lastSent = localStorage.getItem("last_contact_sent_timestamp");
+    if (lastSent) {
+      const elapsed = Date.now() - parseInt(lastSent, 10);
+      const cooldownMs = 60000;
+      if (elapsed < cooldownMs) {
+        const remainingSec = Math.ceil((cooldownMs - elapsed) / 1000);
+        setStatusMessage({
+          type: "error",
+          text: t.contact.cooldownWarning.replace("{sec}", remainingSec.toString()),
+        });
+        return;
+      }
+    }
+
     if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
       setStatusMessage({ type: "error", text: t.contact.requiredWarning });
       return;
@@ -54,6 +80,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isCompact = fals
         type: "success",
         text: response.message || t.contact.successMessage,
       });
+      localStorage.setItem("last_contact_sent_timestamp", Date.now().toString());
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (err: any) {
       setStatusMessage({
@@ -241,6 +268,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isCompact = fals
                   )}
 
                   <form onSubmit={handleSubmit} className="space-y-3">
+                    {/* Invisible Honeypot field for anti-bot & anti-spam detection */}
+                    <input
+                      type="text"
+                      name="_gotcha"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      style={{ display: "none" }}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                    />
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       {/* Tên */}
                       <div className="space-y-1">

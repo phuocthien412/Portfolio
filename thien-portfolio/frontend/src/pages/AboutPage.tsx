@@ -101,6 +101,8 @@ export const AboutPage: React.FC = () => {
                   <img
                     src={avatarUrl}
                     alt="Ngô Minh Thiên"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>

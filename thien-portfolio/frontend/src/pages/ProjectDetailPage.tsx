@@ -156,6 +156,8 @@ export const ProjectDetailPage: React.FC = () => {
               <img
                 src={project.image_url}
                 alt={project.title}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-64 sm:h-96 md:h-[460px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />

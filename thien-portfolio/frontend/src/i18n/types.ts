@@ -118,6 +118,7 @@ export interface TranslationSchema {
     successMessage: string;
     errorMessage: string;
     requiredWarning: string;
+    cooldownWarning: string;
     directNote: string;
     openEmailApp: string;
     emailDirectly: string;

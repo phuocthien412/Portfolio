@@ -88,6 +88,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
                 <img
                   src={avatarUrl}
                   alt="Ngô Minh Thiên"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>
