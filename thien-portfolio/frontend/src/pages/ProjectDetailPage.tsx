@@ -271,7 +271,7 @@ export const ProjectDetailPage: React.FC = () => {
               className="p-5 rounded-2xl border border-slate-200 dark:border-border/60 bg-white/90 dark:bg-card/70 hover:border-emerald-500/50 transition-all flex items-center justify-between group shadow-xs"
             >
               <div className="space-y-1">
-                <span className="text-[11px] font-mono text-slate-400 block flex items-center gap-1">
+                <span className="text-[11px] font-mono text-slate-400 flex items-center gap-1">
                   <ArrowLeft className="w-3.5 h-3.5" />
                   <span>{isEn ? "Previous Project" : "Dự án trước"}</span>
                 </span>
@@ -286,7 +286,7 @@ export const ProjectDetailPage: React.FC = () => {
               className="p-5 rounded-2xl border border-slate-200 dark:border-border/60 bg-white/90 dark:bg-card/70 hover:border-emerald-500/50 transition-all flex items-center justify-between group shadow-xs text-right"
             >
               <div className="space-y-1 ml-auto">
-                <span className="text-[11px] font-mono text-slate-400 block flex items-center justify-end gap-1">
+                <span className="text-[11px] font-mono text-slate-400 flex items-center justify-end gap-1">
                   <span>{isEn ? "Next Project" : "Dự án tiếp theo"}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </span>
