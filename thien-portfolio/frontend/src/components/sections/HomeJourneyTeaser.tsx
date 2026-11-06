@@ -56,7 +56,7 @@ export const HomeJourneyTeaser: React.FC = () => {
       icon: Briefcase,
       period: "08/2025-06/2026",
       badge: isEn ? "Enterprise Experience" : "Thực chiến doanh nghiệp",
-      title: isEn ? t.journey.roleAitc : "Software Engineer, Full-Stack",
+      title: isEn ? t.journey.roleAitc : "Software Engineer",
       institution: isEn ? t.journey.companyAitc : "Công ty CP Công nghệ AITC",
       desc: isEn
         ? "Shipped 4 production enterprise systems with high throughput"
@@ -106,7 +106,7 @@ export const HomeJourneyTeaser: React.FC = () => {
             "Tư duy tối ưu hóa giá trị kinh doanh và trải nghiệm người dùng cuối là ưu tiên hàng đầu.",
             "Thích ứng nhanh với công nghệ mới, tinh thần cầu thị và sẵn sàng nhận mọi thử thách.",
           ],
-      techPills: ["Full-Stack", "FastAPI", "React", "TypeScript", "Tailwind CSS"],
+      techPills: ["Clean Architecture", "FastAPI", "React", "TypeScript", "Tailwind CSS"],
       theme: {
         iconBg: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
         label: "text-emerald-400",

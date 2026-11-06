@@ -3,14 +3,14 @@ import type { ProfileData, SkillCategory, ExperienceItem, ProjectItem } from "..
 export const PROFILE_DATA: ProfileData = {
   name: "NGÔ MINH THIÊN",
   title: "SOFTWARE ENGINEER",
-  tagline: "Full-Stack Developer & AI Systems Integrator",
+  tagline: "Software Engineer & AI Systems Integrator",
   phone: "0987176434",
   email: "minhngothien1@gmail.com",
   address: "Phường Phú Thuận, Quận 7, TP. Hồ Chí Minh",
   github: "https://github.com/phuocthien412",
   career_objective:
-    "Full-Stack developer capable of integrating AI and multi-agent architecture to drive automation. I deliver production-ready solutions in enterprise environments, prioritizing maintainable code and high-performance architecture. I aim to contribute and promote technical excellence in large-scale software projects.",
-  bio: "Xin chào! Tôi là Ngô Minh Thiên — Kỹ sư phần mềm Full-Stack với thế mạnh kết hợp kiến trúc đa tác nhân (Multi-Agent) và AI vào quy trình tự động hóa thực tế. Tôi luôn chú trọng mã nguồn sạch, kiến trúc module hóa bền vững và trải nghiệm người dùng tinh tế từ ý tưởng ban đầu đến môi trường production.",
+    "Software Engineer capable of integrating AI and multi-agent architecture to drive automation. I deliver production-ready solutions in enterprise environments, prioritizing maintainable code and high-performance architecture. I aim to contribute and promote technical excellence in large-scale software projects.",
+  bio: "Xin chào! Tôi là Ngô Minh Thiên — Kỹ sư phần mềm (Software Engineer) với thế mạnh kết hợp kiến trúc đa tác nhân (Multi-Agent) và AI vào quy trình tự động hóa thực tế. Tôi luôn chú trọng mã nguồn sạch, kiến trúc module hóa bền vững và trải nghiệm người dùng tinh tế từ ý tưởng ban đầu đến môi trường production.",
   status: "Sẵn sàng nhận cơ hội mới",
   avatar_url: "./avatar-thien.jpg",
   socials: {
@@ -82,7 +82,7 @@ export const EXPERIENCES_DATA: ExperienceItem[] = [
   {
     id: "aitc-experience",
     company_or_institution: "Công ty CP Công nghệ AITC",
-    role_or_degree: "Full-Stack Developer",
+    role_or_degree: "Software Engineer",
     period: "08/2025 – 06/2026",
     location: "TP. Hồ Chí Minh",
     type: "work",

@@ -1,12 +1,12 @@
 # 🚀 PROJECT CONTEXT: PORTFOLIO NGÔ MINH THIÊN
 
-> **Tài liệu lưu trữ ngữ cảnh toàn diện dành cho Developer & AI Assistant (Antigravity / Gemini / Copilot).**  
+> **Tài liệu lưu trữ ngữ cảnh toàn diện dành cho AI Assistant (Antigravity / Gemini / Copilot).**  
 > Bất cứ khi nào mở phiên làm việc mới, bạn chỉ cần gõ `@PROJECT_CONTEXT.md` hoặc AI sẽ tự đọc file này để nắm toàn bộ kiến trúc mà không bị quên giữa chừng!
 
 ---
 
 ## 📌 1. Thông Tin Tổng Quan Dự Án
-- **Chủ sở hữu:** Ngô Minh Thiện (Software Engineer • Full-Stack Developer)
+- **Chủ sở hữu:** Ngô Minh Thiện (Software Engineer)
 - **Học vấn:** Cử nhân Kỹ thuật Phần mềm (2021 – 2025) – Đại học Công nghệ TP.HCM (HUTECH)
 - **Kinh nghiệm thực chiến:** Software Engineer tại Công ty CP Công nghệ AITC (08/2025 – 06/2026), tham gia bàn giao 4 hệ thống phần mềm doanh nghiệp (Tân Hòa Chatbot & Log Monitoring, Equipment Management System, QR Code E-Card Event, Web Platform).
 - **GitHub Repo:** `https://github.com/phuocthien412/KINH_NGHIEM_CA_NHAN`

@@ -6,7 +6,7 @@ export const CvViewerModal: React.FC = () => {
   const { isCvModalOpen, closeCvModal } = usePortfolioStore();
   const t = useT();
 
-  const cvPdfUrl = "/cv/CV_NGOMINHTHIEN.pdf";
+  const cvPdfUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/cv/CV_NGOMINHTHIEN.pdf`;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

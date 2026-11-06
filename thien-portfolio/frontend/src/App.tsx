@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { MouseSpotlight } from "./components/ui/MouseSpotlight";
@@ -29,6 +29,10 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
+// Detect GitHub Pages environment (hash router needed) vs Custom Domain / Cloudflare (clean browser router)
+const isGitHubPages = typeof window !== "undefined" && window.location.hostname.includes("github.io");
+const RouterComponent = isGitHubPages ? HashRouter : BrowserRouter;
+
 export const AppContent: React.FC = () => {
   const { selectedProject, setSelectedProject, theme, language } = usePortfolioStore();
 
@@ -45,15 +49,15 @@ export const AppContent: React.FC = () => {
     if (typeof document !== "undefined") {
       document.documentElement.setAttribute("lang", language);
       if (language === "en") {
-        document.title = "Ngo Minh Thien - Software Engineer | Full-Stack ";
+        document.title = "Ngo Minh Thien - Software Engineer";
       } else {
-        document.title = "Ngô Minh Thiên - Software Engineer | Full-Stack ";
+        document.title = "Ngô Minh Thiên - Software Engineer";
       }
     }
   }, [language]);
 
   return (
-    <BrowserRouter>
+    <RouterComponent>
       <ScrollToTop />
       {/* Top Reading / Scroll Progress Bar */}
       <ScrollProgressBar />
@@ -101,7 +105,7 @@ export const AppContent: React.FC = () => {
         {/* Floating Scroll To Top Button */}
         <ScrollToTopButton />
       </div>
-    </BrowserRouter>
+    </RouterComponent>
   );
 };
 

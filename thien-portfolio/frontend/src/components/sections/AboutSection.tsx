@@ -10,7 +10,7 @@ interface AboutSectionProps {
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
   const t = useT();
-  const avatarUrl = profile?.avatar_url || "/avatar-thien.jpg";
+  const avatarUrl = profile?.avatar_url || "./avatar-thien.jpg";
 
   const stats = [
     {
@@ -104,7 +104,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
                   </span>
                 </div>
                 <p className="text-xs font-mono text-emerald-700 dark:text-cyan-400 font-semibold">
-                  Full-Stack Software Engineer • AITC (2025 - 2026)
+                  Software Engineer • AITC (2025 - 2026)
                 </p>
               </div>
             </div>

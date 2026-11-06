@@ -57,7 +57,7 @@ export const Footer: React.FC = () => {
                 </span>
                 <span className="text-xs font-mono text-emerald-700 dark:text-emerald-400 font-medium flex items-center gap-1.5">
                   <Terminal className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-                  Software Engineer • Full-Stack Developer
+                  Software Engineer
                 </span>
               </div>
             </div>

@@ -1,6 +1,6 @@
 # NGÔ MINH THIÊN - PERSONAL PORTFOLIO & CAREER ROADMAP
 
-> **Software Engineer | Full-Stack Developer**  
+> **Software Engineer**  
 > 📞 Hotline: `0987 176 434` • ✉️ Email: `minhngothien1@gmail.com` • 🐙 GitHub: [github.com/phuocthien412](https://github.com/phuocthien412)  
 > 📍 Địa chỉ: Phường Phú Thuận, Quận 7, TP. Hồ Chí Minh  
 > 🎓 Học vấn: **Đại học Công nghệ Thành phố Hồ Chí Minh** (Chuyên ngành Kỹ thuật Phần mềm, 2021 – 2025)
@@ -196,7 +196,7 @@ Toàn bộ ứng dụng đã được thiết kế và đồng bộ hóa theo ng
    - Thay thế các khối tĩnh bằng **Sơ đồ lộ trình tuần tự**:
      - **Giai đoạn 01 (2021 – 2025)**: Nền Tảng Đại Học tại **Đại học Công nghệ Thành phố Hồ Chí Minh** (Chuyên ngành Kỹ thuật Phần mềm).
      - **Bước đệm chuyển giao**: Badge kết nối `Tốt nghiệp & Chuyển giao thực tế` với hiệu ứng xung nhịp.
-     - **Giai đoạn 02 (08/2025 – 06/2026)**: Thực Chiến Doanh Nghiệp tại **AITC** (Full-Stack Developer).
+     - **Giai đoạn 02 (08/2025 – 06/2026)**: Thực Chiến Doanh Nghiệp tại **AITC**.
    - Trục kết nối phát sáng (Vertical Circuit Spine) kết nối giữa 2 Node thiên thể có hiệu ứng quỹ đạo và phát sáng tinh vân mạnh mẽ khi hover.
 6. **Banner Hợp Tác Tuyển Dụng Nền Vũ Trụ (Home CTA Banner)**:
    - Tích hợp nền sao băng lấp lánh, vòng quỹ đạo thiên thể xoay chậm và nút bấm Space Glow.
@@ -217,7 +217,7 @@ Toàn bộ ứng dụng đã được thiết kế và đồng bộ hóa theo ng
 ## 📋 Dữ Liệu Hồ Sơ Thực Tế Của Kỹ Sư
 
 - **Họ và tên**: Ngô Minh Thiên
-- **Vị trí**: Software Engineer | Full-Stack Developer
+- **Vị trí**: Software Engineer
 - **Học vấn**: Đại học Công nghệ Thành phố Hồ Chí Minh (2021 – 2025)
 - **Kinh nghiệm thực chiến**: AITC - Asia Information Technology Center (08/2025 – 06/2026)
 - **Dự án trọng điểm**:
@@ -225,7 +225,7 @@ Toàn bộ ứng dụng đã được thiết kế và đồng bộ hóa theo ng
   2. *Equipment Management & Smart Spec Comparison* (FastAPI, Python, MySQL, AI Excel Normalization, Docker).
   3. *AITC Official Technology Portal* (React, TypeScript, Tailwind CSS, WordPress REST, Lighthouse 98+).
   4. *QR Code - ECard Event Platform* (Node.js, Express, React, QR Generator).
-- **Trụ cột triết lý kỹ thuật (Dành cho Junior Full-Stack 1+ năm kinh nghiệm)**:
+- **Trụ cột triết lý kỹ thuật (Dành cho Software Engineer 1+ năm kinh nghiệm)**:
   1. *Clean Code & Cấu Trúc Mã Nguồn Rõ Ràng*: Phân tách Routes/Services/Schemas, code dễ đọc, dễ bảo trì, tái sử dụng React components.
   2. *Tư Duy Bất Đồng Bộ & Tối Ưu Truy Vấn*: Khai thác non-blocking async/await trên FastAPI & Node.js, đánh index các trường truy vấn chính trên MongoDB và MySQL.
   3. *Thực Chiến & Tự Động Hóa Thực Tế*: Xử lý dữ liệu thực tế, chuẩn hóa biểu mẫu Excel, tích hợp API, xây dựng dashboard trực quan.

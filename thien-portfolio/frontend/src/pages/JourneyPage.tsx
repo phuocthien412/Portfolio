@@ -180,7 +180,7 @@ export const JourneyPage: React.FC = () => {
               <ul className="space-y-2 text-xs sm:text-sm">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
-                  <span>{isEn ? "Solid mastery of core object-oriented languages: C#, Java, PHP, and full-stack web engineering." : "Nắm vững các ngôn ngữ nền tảng hướng đối tượng: C#, Java, PHP và kỹ thuật lập trình web hiện đại."}</span>
+                  <span>{isEn ? "Solid mastery of core object-oriented languages: C#, Java, PHP, and modern software engineering principles." : "Nắm vững các ngôn ngữ nền tảng hướng đối tượng: C#, Java, PHP và kỹ thuật lập trình web hiện đại."}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
