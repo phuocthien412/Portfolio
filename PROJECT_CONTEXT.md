@@ -25,6 +25,15 @@
 - **Routing:** React Router DOM v7 với `HashRouter` (chống lỗi 404 khi F5 trên GitHub Pages)
 - **Đa ngôn ngữ (i18n):** Song ngữ Anh - Việt (VI / EN) hỗ trợ chuyển đổi mượt mà qua Zustand và từ điển trong `src/i18n/locales/`
 - **Contact Form Backend:** Web3Forms API tích hợp trực tiếp, chuyển tiếp tin nhắn bảo mật về hòm thư điện tử (Gửi kèm cả email subject lẫn dòng trường "Chủ đề trao đổi" trong bảng nội dung thư).
+- **Hệ Thống Phòng Thủ & Bảo Mật Toàn Diện (Security Hardening):**
+  - **Chống lộ mã & bí mật (Secrets & Sourcemaps):** Đã tắt Source Map production (`sourcemap: false` trong `vite.config.ts`), bổ sung chặt chẽ `.env` và `*.local` vào `.gitignore`.
+  - **Bảo vệ Contact Form chống Spam & Flood:**
+    - Cài đặt bẫy **Honeypot** ngầm (`_gotcha` / `botcheck` ẩn): Nếu bot tự động quét và điền dữ liệu vào trường này, hệ thống sẽ âm thầm hủy request mà không gửi đi, triệt tiêu bot rác.
+    - **Client-side Rate Limiting (Cooldown 60s):** Lưu mốc thời gian vào `localStorage`, chặn ngay lập tức nếu người dùng hoặc công cụ cố tình spam gửi tin nhắn liên tục trong 60 giây.
+    - Vô hiệu hóa nút gửi (`disabled`) và hiển thị Spinner ngay khi nhấn gửi.
+  - **Vệ sinh dữ liệu & Phòng chống XSS:** 100% không dùng `dangerouslySetInnerHTML`, toàn bộ liên kết ngoại (`target="_blank"`) đều gắn chặt `rel="noopener noreferrer"`.
+  - **Tối ưu tránh "Tự DDoS":** Kiểm tra 100% `useEffect` sạch vòng lặp vô tận, bổ sung `loading="lazy" decoding="async"` cho toàn bộ ảnh trên trang để tiết kiệm băng thông.
+  - **Security Headers & CSP (`public/_headers`):** Cấu hình tự động cho Cloudflare với `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`, và `Content-Security-Policy` chặt chẽ.
 
 ---
 
