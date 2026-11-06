@@ -55,7 +55,7 @@ export async function submitContact(data: ContactFormInput): Promise<ContactResp
           email: data.email,
           subject: data.subject ? `[Portfolio] ${data.subject}` : `Liên hệ mới từ ${data.name}`,
           "Chủ đề trao đổi": data.subject || "Trao đổi chung",
-          message: data.message,
+           message: data.message,
           from_name: `${data.name} (Portfolio)`,
         }),
       });
