@@ -38,7 +38,7 @@ export const HomeCtaBanner: React.FC = () => {
           <div className="rounded-3xl border border-slate-200 dark:border-emerald-500/30 bg-white/95 dark:bg-card/75 backdrop-blur-2xl p-8 sm:p-12 lg:p-14 shadow-xl shadow-slate-200/50 dark:shadow-2xl dark:shadow-emerald-500/10 hover:border-emerald-500/40 hover:shadow-2xl transition-all duration-500 relative overflow-hidden text-center max-w-4xl mx-auto group">
             
             {/* Top Galactic Edge Glow */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 via-emerald-400 to-transparent shadow-[0_0_10px_rgba(16,185,129,0.3)]" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_10px_rgba(16,185,129,0.3)]" />
             
             {/* Ambient internal light */}
             <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-emerald-500/10 dark:bg-emerald-500/20 rounded-full blur-3xl pointer-events-none group-hover:bg-emerald-500/20 dark:group-hover:bg-emerald-500/30 transition-all duration-500" />

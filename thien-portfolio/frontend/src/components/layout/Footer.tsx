@@ -33,7 +33,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="relative border-t border-slate-200/80 dark:border-emerald-500/20 bg-slate-100/70 dark:bg-card/40 backdrop-blur-2xl text-slate-700 dark:text-slate-200 overflow-hidden transition-colors duration-300 pt-16 pb-12">
       {/* 1. Cosmic Horizon Gradient Beam on Top Edge */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400/80 via-cyan-400/80 to-transparent shadow-[0_0_12px_rgba(16,185,129,0.3)]" />
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400/80 to-transparent shadow-[0_0_12px_rgba(16,185,129,0.3)]" />
 
       {/* 2. Ambient Deep Space Nebula Glow */}
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[850px] h-[220px] bg-gradient-to-b from-emerald-500/10 via-cyan-500/5 to-transparent dark:from-emerald-500/15 dark:via-cyan-500/10 blur-[120px] pointer-events-none rounded-full" />
