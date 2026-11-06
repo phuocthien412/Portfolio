@@ -22,7 +22,7 @@
 - **Styling:** Tailwind CSS v4 + Tailwind Animate + Glassmorphism UI
 - **State Management:** Zustand (`usePortfolioStore`)
 - **Icons:** Lucide React (`lucide-react`)
-- **Routing:** React Router DOM v7 với `HashRouter` (chống lỗi 404 khi F5 trên GitHub Pages)
+- **Routing:** React Router DOM v7 với `BrowserRouter` (Clean URL, 100% chuẩn Production/Senior không còn dấu `#`), kết hợp Cloudflare SPA routing (`not_found_handling: single-page-application`).
 - **Đa ngôn ngữ (i18n):** Song ngữ Anh - Việt (VI / EN) hỗ trợ chuyển đổi mượt mà qua Zustand và từ điển trong `src/i18n/locales/`
 - **Contact Form Backend:** Web3Forms API tích hợp trực tiếp, chuyển tiếp tin nhắn bảo mật về hòm thư điện tử (Gửi kèm cả email subject lẫn dòng trường "Chủ đề trao đổi" trong bảng nội dung thư).
 - **Hệ Thống Phòng Thủ & Bảo Mật Toàn Diện (Security Hardening):**

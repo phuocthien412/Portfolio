@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { MouseSpotlight } from "./components/ui/MouseSpotlight";
@@ -53,7 +53,7 @@ export const AppContent: React.FC = () => {
   }, [language]);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       {/* Top Reading / Scroll Progress Bar */}
       <ScrollProgressBar />
@@ -101,7 +101,7 @@ export const AppContent: React.FC = () => {
         {/* Floating Scroll To Top Button */}
         <ScrollToTopButton />
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
