@@ -14,7 +14,7 @@ export const vi: TranslationSchema = {
   },
   hero: {
     greeting: "Xin chào, tôi là",
-    role: "Software Engineer | Fullstack Developer",
+    role: "Software Enginper",
     pitch: "Tôi xây dựng các hệ thống web hiệu năng cao, giao diện đẹp và trải nghiệm người dùng mượt mà — từ MVP đến production.",
     viewProjects: "Xem các dự án",
     contactMe: "Liên hệ với tôi",

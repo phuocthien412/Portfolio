@@ -14,7 +14,7 @@ export const en: TranslationSchema = {
   },
   hero: {
     greeting: "Hello, I am",
-    role: "Software Engineer | Fullstack Developer",
+    role: "Software Engineer",
     pitch: "I craft high-performance web systems, elegant interfaces, and seamless user experiences — from MVP to enterprise production.",
     viewProjects: "View Projects",
     contactMe: "Contact Me",
