@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, lazy, useEffect, type ComponentType } from "react";
 import { BrowserRouter, HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
@@ -10,13 +10,31 @@ import { ThemeSceneTransition } from "./components/ui/ThemeSceneTransition";
 import { CosmicSpaceAtmosphere } from "./components/ui/CosmicSpaceAtmosphere";
 import { ProjectDetailModal } from "./components/sections/ProjectDetailModal";
 import { HomePage } from "./pages/HomePage";
-import { AboutPage } from "./pages/AboutPage";
-import { JourneyPage } from "./pages/JourneyPage";
-import { SkillsPage } from "./pages/SkillsPage";
-import { ProjectsPage } from "./pages/ProjectsPage";
-import { ProjectDetailPage } from "./pages/ProjectDetailPage";
-import { ContactPage } from "./pages/ContactPage";
 import { usePortfolioStore } from "./stores/usePortfolioStore";
+
+/** Wraps named-export modules for React.lazy route code-splitting. */
+function lazyNamed<T extends Record<string, ComponentType<any>>, K extends keyof T>(
+  loader: () => Promise<T>,
+  exportName: K
+) {
+  return lazy(async () => {
+    const mod = await loader();
+    return { default: mod[exportName] };
+  });
+}
+
+const AboutPage = lazyNamed(() => import("./pages/AboutPage"), "AboutPage");
+const JourneyPage = lazyNamed(() => import("./pages/JourneyPage"), "JourneyPage");
+const SkillsPage = lazyNamed(() => import("./pages/SkillsPage"), "SkillsPage");
+const ProjectsPage = lazyNamed(() => import("./pages/ProjectsPage"), "ProjectsPage");
+const ProjectDetailPage = lazyNamed(() => import("./pages/ProjectDetailPage"), "ProjectDetailPage");
+const ContactPage = lazyNamed(() => import("./pages/ContactPage"), "ContactPage");
+
+const PageLoader: React.FC = () => (
+  <div className="min-h-[60vh] flex items-center justify-center" aria-busy="true" aria-label="Loading page">
+    <div className="w-8 h-8 rounded-full border-2 border-emerald-500/30 border-t-emerald-400 animate-spin" />
+  </div>
+);
 
 // Component to scroll to top whenever route changes
 const ScrollToTop: React.FC = () => {
@@ -77,17 +95,19 @@ export const AppContent: React.FC = () => {
 
         {/* Dynamic Route Pages */}
         <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/journey" element={<JourneyPage />} />
-            <Route path="/skills" element={<SkillsPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/projects/:id" element={<ProjectDetailPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            {/* Fallback to Home */}
-            <Route path="*" element={<HomePage />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/journey" element={<JourneyPage />} />
+              <Route path="/skills" element={<SkillsPage />} />
+              <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/projects/:id" element={<ProjectDetailPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              {/* Fallback to Home */}
+              <Route path="*" element={<HomePage />} />
+            </Routes>
+          </Suspense>
         </main>
 
         {/* Global Footer */}
