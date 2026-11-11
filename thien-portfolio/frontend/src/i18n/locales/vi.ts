@@ -120,6 +120,7 @@ export const vi: TranslationSchema = {
     successMessage: "Tin nhắn của bạn đã được gửi thành công! Tôi sẽ phản hồi trong vòng 24h.",
     errorMessage: "Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại sau giây lát hoặc sử dụng các kênh liên hệ trực tiếp.",
     requiredWarning: "Vui lòng điền đầy đủ các thông tin bắt buộc.",
+    captchaWarning: "Vui lòng xác thực hCaptcha trước khi gửi tin nhắn.",
     cooldownWarning: "Bạn vừa gửi tin nhắn. Vui lòng đợi {sec} giây trước khi gửi lại.",
     directNote: "",
     openEmailApp: "Mở ứng dụng Email của bạn",

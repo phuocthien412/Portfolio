@@ -42,37 +42,34 @@ export async function submitContact(data: ContactFormInput): Promise<ContactResp
   const web3formsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
   if (web3formsKey && web3formsKey.trim() !== "") {
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: web3formsKey,
-          name: data.name,
-          email: data.email,
-          subject: data.subject ? `[Portfolio] ${data.subject}` : `Liên hệ mới từ ${data.name}`,
-          "Chủ đề trao đổi": data.subject || "Trao đổi chung",
-           message: data.message,
-          from_name: `${data.name} (Portfolio)`,
-        }),
-      });
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: web3formsKey,
+        name: data.name,
+        email: data.email,
+        subject: data.subject ? `[Portfolio] ${data.subject}` : `Liên hệ mới từ ${data.name}`,
+        "Chủ đề trao đổi": data.subject || "Trao đổi chung",
+        message: data.message,
+        from_name: `${data.name} (Portfolio)`,
+        ...(data.captchaToken ? { "h-captcha-response": data.captchaToken } : {}),
+      }),
+    });
 
-      const result = await response.json();
-      if (response.ok && result.success) {
-        return {
-          status: "success",
-          message: "Tin nhắn của bạn đã được gửi thành công! Tôi sẽ phản hồi trong thời gian sớm nhất.",
-          message_id: result.data?.id || `msg_${Date.now()}`,
-          timestamp: new Date().toISOString(),
-        };
-      }
-      throw new Error(result.message || "Không thể gửi tin nhắn qua Web3Forms");
-    } catch (err: any) {
-      console.warn("Web3Forms submission failed, using client fallback:", err);
+    const result = await response.json();
+    if (response.ok && result.success) {
+      return {
+        status: "success",
+        message: "Tin nhắn của bạn đã được gửi thành công! Tôi sẽ phản hồi trong thời gian sớm nhất.",
+        message_id: result.data?.id || `msg_${Date.now()}`,
+        timestamp: new Date().toISOString(),
+      };
     }
+    throw new Error(result.message || "Không thể gửi tin nhắn qua Web3Forms");
   }
 
   // Graceful Client-side Fallback Simulation

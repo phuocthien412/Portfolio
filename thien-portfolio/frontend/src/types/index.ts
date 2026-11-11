@@ -80,6 +80,7 @@ export interface ContactFormInput {
   email: string;
   subject: string;
   message: string;
+  captchaToken?: string;
 }
 
 export interface ContactResponse {

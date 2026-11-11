@@ -5,6 +5,7 @@ import { Badge } from "../ui/Badge";
 import { ModernDockSocials } from "../ui/ModernDockSocials";
 import { usePortfolioStore, useT } from "../../stores/usePortfolioStore";
 import { ScrollReveal } from "../ui/ScrollReveal";
+import { HCaptchaWidget } from "../ui/HCaptchaWidget";
 import { useSubmitContact } from "../../hooks/usePortfolioData";
 import type { ContactFormInput } from "../../types";
 
@@ -14,7 +15,7 @@ interface ContactSectionProps {
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ isCompact = false }) => {
   const t = useT();
-  const language = usePortfolioStore((s) => s.language);
+  const { language, theme } = usePortfolioStore();
   const isEn = language === "en";
   const [copied, setCopied] = useState(false);
   const [formData, setFormData] = useState<ContactFormInput>({
@@ -24,6 +25,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isCompact = fals
     message: "",
   });
   const [honeypot, setHoneypot] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaResetSignal, setCaptchaResetSignal] = useState(0);
   const [statusMessage, setStatusMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   const submitMutation = useSubmitContact();
@@ -74,8 +77,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isCompact = fals
       return;
     }
 
+    if (!captchaToken) {
+      setStatusMessage({ type: "error", text: t.contact.captchaWarning });
+      return;
+    }
+
     try {
-      const response = await submitMutation.mutateAsync(formData);
+      const response = await submitMutation.mutateAsync({
+        ...formData,
+        captchaToken,
+      });
       setStatusMessage({
         type: "success",
         text: response.message || t.contact.successMessage,
@@ -87,6 +98,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isCompact = fals
         type: "error",
         text: err.message || t.contact.errorMessage,
       });
+    } finally {
+      setCaptchaToken("");
+      setCaptchaResetSignal((prev) => prev + 1);
     }
   };
 
@@ -343,6 +357,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isCompact = fals
                         placeholder={t.contact.messagePlaceholder}
                         required
                         className="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-border/70 bg-white/80 dark:bg-background/60 text-slate-900 dark:text-foreground text-base sm:text-sm placeholder:text-slate-400 dark:placeholder:text-muted-foreground/60 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all resize-none shadow-xs"
+                      />
+                    </div>
+
+                    {/* hCaptcha Widget */}
+                    <div className="pt-1">
+                      <HCaptchaWidget
+                        theme={theme}
+                        resetSignal={captchaResetSignal}
+                        onVerify={(token) => {
+                          setCaptchaToken(token);
+                          setStatusMessage((prev) =>
+                            prev?.type === "error" && prev.text === t.contact.captchaWarning ? null : prev
+                          );
+                        }}
+                        onExpire={() => setCaptchaToken("")}
                       />
                     </div>
 
